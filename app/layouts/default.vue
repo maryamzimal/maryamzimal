@@ -1,3 +1,10 @@
+<script setup lang="ts">
+</script>
+
 <template>
-  <slot />
+  <UContainer>
+    <AppHeader :links="navLinks" />
+    <slot />
+    <AppFooter />
+  </UContainer>
 </template>
