@@ -10,13 +10,10 @@ const { footer } = useAppConfig()
 
     <div class="mx-auto">
       <UFooter
-        class="z-10 bg-default"
-        :ui="{ left: 'text-dimmed text-md', right: 'text-md' }">
-        <template #left>
-          {{ footer.credits }}
-        </template>
+        class="z-10 bg-default text-dimmed">
+        {{ footer.credits }}
 
-        <template #right>
+        <!-- <template #right>
           <template v-if="footer?.links">
             <UButton
               v-for="(link, index) in footer?.links"
@@ -29,7 +26,7 @@ const { footer } = useAppConfig()
               }"
               class="px-2" />
           </template>
-        </template>
+        </template> -->
       </UFooter>
     </div>
   </div>

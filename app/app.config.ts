@@ -12,7 +12,14 @@ export default defineAppConfig({
       to: 'https://go.nuxt.com/x',
       target: '_blank',
       'aria-label': 'Nuxt on X'
-    }, {
+    },
+    {
+      icon: 'i-simple-icons-linkedin',
+      to: 'https://go.nuxt.com/x',
+      target: '_blank',
+      'aria-label': 'Nuxt on X'
+    },
+    {
       icon: 'i-simple-icons-github',
       to: 'https://github.com/nuxt/ui',
       target: '_blank',
