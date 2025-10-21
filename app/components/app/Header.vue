@@ -24,7 +24,7 @@ const closeMenu = () => {
            backdrop-blur-xl border border-white/10 dark:border-white/5
            rounded-xl shadow-lg shadow-black/30
            transition-all duration-500 px-6 sm:px-8">
-    <!-- ✅ Main Header Row -->
+    <!--  Main Header Row -->
     <div class="flex items-center justify-between h-14">
       <!-- Left Section -->
       <NuxtLink
@@ -58,18 +58,18 @@ const closeMenu = () => {
     </div>
 
     <!--  Mobile Navigation -->
-    <transition name="fade-slide">
-      <div
-        v-if="isMenuOpen"
-        class="md:hidden px-2 py-2 shadow-xl">
-        <UNavigationMenu
-          :items="links"
-          orientation="vertical"
-          variant="link"
-          class="-mx-2.5"
-          @click="closeMenu" />
-      </div>
-    </transition>
+    <!-- <transition name="fade-slide"> -->
+    <div
+      v-if="isMenuOpen"
+      class="md:hidden px-2 py-2 shadow-xl">
+      <UNavigationMenu
+        :items="links"
+        orientation="vertical"
+        variant="link"
+        class="-mx-2.5"
+        @click="closeMenu" />
+    </div>
+    <!-- </transition> -->
   </header>
 </template>
 

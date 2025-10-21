@@ -7,7 +7,7 @@ const scrollContainer = ref(null)
     <UContainer>
       <!-- Section Title -->
       <div class="flex flex-col gap-1.5 mb-6 text-center sm:text-left">
-        <h1 class="text-primary text-xl sm:text-2xl font-extrabold">
+        <h1 class="text-primary text-2xl sm:text-3xl font-extrabold tracking-tight">
           Contribution Graph
         </h1>
         <h2 class="text-dimmed text-base sm:text-lg">
@@ -15,7 +15,7 @@ const scrollContainer = ref(null)
         </h2>
       </div>
 
-      <!-- Scrollable Graph (No Arrows) -->
+      <!-- Scrollable Graph  -->
       <div
         ref="scrollContainer"
         class="overflow-x-auto scrollbar scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-800 hover:scrollbar-thumb-gray-400 rounded-md pb-3 max-w-full mx-auto mt-6 sm:mt-8">

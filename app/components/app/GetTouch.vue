@@ -20,7 +20,6 @@
           <!-- Left Content -->
           <div class="space-y-2 sm:space-y-3 text-center sm:text-left flex-1">
             <div class="flex justify-center sm:justify-start items-center gap-2">
-              <UIcon name="i-lucide-send" class="w-6 h-6" />
               <h3 class="text-lg font-bold text-shadow-indigo-50">
                 Ready to discuss your next project?
               </h3>
