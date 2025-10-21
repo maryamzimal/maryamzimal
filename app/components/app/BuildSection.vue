@@ -1,16 +1,40 @@
+<script setup lang="ts">
+const highlights = [
+  {
+    title: 'Responsive & Modern Layouts',
+    icon: 'i-lucide-monitor-smartphone',
+    description:
+      'Perfect display across mobile, tablet, and desktop — styled with Tailwind and Nuxt UI for a sleek, modern experience.',
+  },
+  {
+    title: 'SEO & Performance Optimization',
+    icon: 'i-lucide-rocket',
+    description:
+      'Optimized meta tags, fast loading speed, and efficient code to boost visibility and deliver lightning performance.',
+  },
+  {
+    title: 'Scalable & Secure Architecture',
+    icon: 'i-lucide-cloud-cog',
+    description:
+      'Powered by Node.js and Firebase — secure, fast, and designed to scale effortlessly as your app grows.',
+  },
+]
+</script>
+
 <template>
   <section class="py-20 px-6 relative overflow-hidden">
     <UContainer class="relative z-10 text-center space-y-12">
       <!-- Heading -->
       <div class="flex flex-col gap-1.5 mb-6 text-center sm:text-left">
-        <h1 class="text-primary text-2xl sm:text-3xl font-extrabold">
+        <h1 class="text-primary text-2xl sm:text-3xl font-extrabold tracking-tight">
           What I Can Build
         </h1>
-        <h2 class="text-dimmed text-base sm:text-lg">
-          Scalable apps, sleek UI, and performant code.
+        <h2 class="text-dimmed text-base sm:text-lg font-medium">
+          Scalable, optimized, and beautifully responsive web apps.
         </h2>
       </div>
 
+      <!-- Cards -->
       <div
         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-center mt-6 sm:mt-10">
         <UCard
@@ -44,26 +68,3 @@
     </UContainer>
   </section>
 </template>
-
-<script setup lang="ts">
-const highlights = [
-  {
-    title: 'Scalable Web Apps',
-    icon: 'i-lucide-layers',
-    description:
-      'Building high-performance web applications with modern frameworks like Nuxt, Next.js, and Node.js.',
-  },
-  {
-    title: 'Robust Mobile Solutions',
-    icon: 'i-lucide-smartphone',
-    description:
-      'Creating cross-platform and native mobile apps with React Native for seamless user experiences.',
-  },
-  {
-    title: 'Optimized Performance',
-    icon: 'i-lucide-zap',
-    description:
-      'Ensuring fast, secure, and efficient code for smooth functionality across web and mobile devices.',
-  },
-]
-</script>

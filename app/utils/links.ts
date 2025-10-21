@@ -12,9 +12,5 @@ export const navLinks: NavigationMenuItem[] = [
   {
     label: 'Projects',
     to: '/speaking'
-  },
-  {
-    label: 'Contact',
-    to: '/about'
   }
 ]
