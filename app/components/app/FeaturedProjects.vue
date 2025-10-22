@@ -25,24 +25,53 @@ const featuredProjects = [
     tags: ['Tailwind css', 'Vue', 'Nuxt UI'],
   },
 ]
+
+// Particles
+const getParticleStyle = index => {
+  const size = Math.random() * 8 + 2
+  const left = Math.random() * 100
+  const animationDelay = Math.random() * 6
+  const animationDuration = Math.random() * 10 + 10
+
+  return {
+    width: `${size}px`,
+    height: `${size}px`,
+    left: `${left}%`,
+    animationDelay: `${animationDelay}s`,
+    animationDuration: `${animationDuration}s`
+  }
+}
 </script>
 
 <template>
-  <section class="py-16 px-6 relative overflow-hidden">
-    <UContainer class="relative z-10 text-center space-y-12">
+  <section
+    class="py-16 px-6 relative overflow-hidden
+           bg-gradient-to-br from-purple-600/20 via-purple-500/10 to-purple-700/20">
+    <!-- Particles & Grid -->
+    <div class="absolute inset-0 z-0">
+      <div class="particles-container">
+        <div v-for="i in 35" :key="i" class="particle" :style="getParticleStyle(i)" />
+      </div>
+      <div class="absolute inset-0 opacity-5">
+        <div class="grid-bg" />
+      </div>
+    </div>
+
+    <UContainer class="relative z-10 text-center space-y-10">
       <!-- Heading -->
-      <div class="flex flex-col gap-1.5 mb-6 text-center sm:text-left">
-        <h1 class="text-primary text-2xl sm:text-3xl font-extrabold tracking-tight">
-          What I've Been Working On
+      <div class="flex flex-col gap-1.5 mb-2 text-center items-center justify-center">
+        <h1
+          class="text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text
+                 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500">
+          What I've been working on
         </h1>
-        <h2 class="text-dimmed text-base sm:text-lg font-medium">
+        <h2 class="text-xl sm:text-2xl text-teal-300 font-bold mt-2">
           Highlighted Projects
         </h2>
       </div>
 
       <!-- Project Cards -->
-      <div
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center mt-6 sm:mt-10">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center mt-6 sm:mt-10">
         <UCard
           v-for="(project, index) in featuredProjects"
           :key="index"
@@ -51,7 +80,8 @@ const featuredProjects = [
                  bg-white/5 dark:bg-slate-900/50
                  shadow-[0_0_20px_rgba(255,255,255,0.05)]
                  hover:shadow-[0_0_25px_rgba(56,189,248,0.4)]
-                 hover:border-primary/50 transition-all duration-500 ease-in-out hover:scale-[1.03]">
+                 hover:border-primary/50 transition-all duration-500 ease-in-out
+                 hover:scale-[1.03] animate-fade-in-up">
           <!-- Project Image -->
           <div class="relative h-52 overflow-hidden rounded-t-2xl">
             <NuxtImg
@@ -72,7 +102,7 @@ const featuredProjects = [
               {{ project.description }}
             </p>
 
-            <!-- Tags + Button -->
+            <!-- Tags -->
             <div class="flex items-center justify-between mt-4">
               <div class="flex gap-2 flex-wrap">
                 <UBadge
@@ -86,28 +116,9 @@ const featuredProjects = [
                          border border-white/10 text-white
                          backdrop-blur-md rounded-full px-2 py-1" />
               </div>
-              <!-- <UButton
-                :to="project.link"
-                icon="i-lucide-arrow-up-right"
-                variant="ghost"
-                size="xs"
-                target="_blank"
-                class="hover:text-primary transition-colors"
-                aria-label="See project" /> -->
             </div>
           </div>
         </UCard>
-      </div>
-
-      <!-- CTA -->
-      <div class="flex justify-start mt-10">
-        <UButton
-          label="View All Projects"
-          icon="i-lucide-arrow-right"
-          trailing
-          variant="subtle"
-          size="lg"
-          class="px-6 py-2 rounded-xl bg-primary/10 hover:bg-primary/20 backdrop-blur-md transition" />
       </div>
     </UContainer>
   </section>
@@ -119,5 +130,58 @@ const featuredProjects = [
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* Particles & Animations */
+@keyframes particle-float {
+  0% { opacity: 0; transform: translateY(100vh) translateX(0px); }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-100px) translateX(50px); }
+}
+
+.particles-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  background: rgba(139, 92, 246, 0.3);
+  border-radius: 50%;
+  animation: particle-float linear infinite;
+}
+
+.particle:nth-child(2n) { background: rgba(236, 72, 153, 0.3); }
+.particle:nth-child(3n) { background: rgba(34, 197, 94, 0.2); }
+.particle:nth-child(4n) { background: rgba(251, 191, 36, 0.3); }
+
+/* Faint grid */
+.grid-bg {
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: grid-move 25s linear infinite;
+}
+
+@keyframes grid-move {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
+}
+
+/* Fade-in-up animation */
+@keyframes fade-in-up {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 1s ease-out;
 }
 </style>

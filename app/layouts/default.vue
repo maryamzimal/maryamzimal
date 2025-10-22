@@ -2,9 +2,8 @@
 </script>
 
 <template>
-  <UContainer>
-    <AppHeader :links="navLinks" />
+  <div>
     <slot />
     <AppFooter />
-  </UContainer>
+  </div>
 </template>

@@ -2,7 +2,7 @@
   "name": "nuxt-app",
   "type": "module",
   "private": true,
-  "version": "0.0.5",
+  "version": "0.0.6",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -23,6 +23,7 @@
   "devDependencies": {
     "@iconify/json": "^2.2.396",
     "eslint": "^9.37.0",
+    "nuxt-icon": "^1.0.0-beta.7",
     "typescript": "^5.9.3",
     "wrangler": "^4.43.0"
   }
