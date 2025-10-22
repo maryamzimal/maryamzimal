@@ -2,8 +2,8 @@
   <UMain>
     <AppHeroSection />
     <!-- <AppGraphSection /> -->
-    <AppTechStack />
     <AppBuildSection />
+    <AppTechStack />
     <AppFeaturedProjects />
     <AppGetTouch />
   </UMain>
