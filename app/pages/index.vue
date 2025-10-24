@@ -1,9 +1,8 @@
 <template>
   <UMain>
     <AppHeroSection />
-    <!-- <AppGraphSection /> -->
+    <AppAboutSection />
     <AppBuildSection />
-    <AppTechStack />
     <AppFeaturedProjects />
     <AppGetTouch />
   </UMain>

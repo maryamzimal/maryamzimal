@@ -63,10 +63,10 @@ const getParticleStyle = index => {
         <h1
           class="text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text
                  bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500">
-          What I've been working on
+          My Featured Work
         </h1>
         <h2 class="text-xl sm:text-2xl text-teal-300 font-bold mt-2">
-          Highlighted Projects
+          Projects that showcase innovation and creativity
         </h2>
       </div>
 
