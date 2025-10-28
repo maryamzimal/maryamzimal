@@ -4,7 +4,7 @@ const featuredProjects = [
     title: 'Portfolio Website',
     description:
       'A sleek and responsive personal portfolio built with Nuxt 3, TailwindCSS, and Nuxt UI.',
-    image: '/images.jpg',
+    image: 'image.png',
     link: 'https://yourportfolio.com',
     tags: ['Nuxt', 'Tailwind', 'UI'],
   },
@@ -12,7 +12,7 @@ const featuredProjects = [
     title: 'E-Commerce Dashboard',
     description:
       'An admin dashboard for managing products, orders, and analytics in real time.',
-    image: '/images.jpg',
+    image: 'https://dummyimage.com/600x400/1f2937/ffffff&text=E-Commerce+Dashboard',
     link: 'https://github.com/yourname/dashboard',
     tags: ['Vue', 'Node', 'MongoDB'],
   },
@@ -20,7 +20,7 @@ const featuredProjects = [
     title: 'Simple Todo App',
     description:
       'A minimal and elegant Todo application built with Vue 3 and local storage for managing daily tasks efficiently.',
-    image: '/images.jpg',
+    image: 'https://dummyimage.com/600x400/374151/ffffff&text=Todo+App',
     link: 'https://github.com/yourname/todo-app',
     tags: ['Tailwind css', 'Vue', 'Nuxt UI'],
   },
@@ -75,48 +75,39 @@ const getParticleStyle = index => {
         <UCard
           v-for="(project, index) in featuredProjects"
           :key="index"
-          class="group relative overflow-hidden rounded-2xl p-0
-                 backdrop-blur-xl border border-white/10
-                 bg-white/5 dark:bg-slate-900/50
-                 shadow-[0_0_20px_rgba(255,255,255,0.05)]
-                 hover:shadow-[0_0_25px_rgba(56,189,248,0.4)]
-                 hover:border-primary/50 transition-all duration-500 ease-in-out
-                 hover:scale-[1.03] animate-fade-in-up">
-          <!-- Project Image -->
-          <div class="relative h-52 overflow-hidden rounded-t-2xl">
-            <NuxtImg
-              :src="project.image"
-              :alt="project.title"
-              class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110" />
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent
-                     opacity-70 group-hover:opacity-90 transition-opacity duration-500" />
-          </div>
-
-          <!-- Content -->
-          <div class="p-6 text-left space-y-3">
-            <h3 class="font-semibold text-lg sm:text-xl text-white tracking-tight">
-              {{ project.title }}
-            </h3>
-            <p class="text-sm sm:text-base text-gray-300/90 leading-relaxed line-clamp-2">
-              {{ project.description }}
-            </p>
-
-            <!-- Tags -->
-            <div class="flex items-center justify-between mt-4">
-              <div class="flex gap-2 flex-wrap">
-                <UBadge
-                  v-for="(tag, tIndex) in project.tags"
-                  :key="tIndex"
-                  :label="tag"
-                  size="xs"
-                  variant="subtle"
-                  class="text-[11px] uppercase tracking-wide
-                         bg-gradient-to-r from-primary/40 to-cyan-400/30
-                         border border-white/10 text-white
-                         backdrop-blur-md rounded-full px-2 py-1" />
-              </div>
+          class="relative group hover:shadow-md w-full max-w-[800px] h-full flex flex-col"
+          :ui="{ header: 'p-0 sm:p-0 overflow-hidden' }">
+          <!-- Product Image -->
+          <template #header>
+            <div class="relative overflow-hidden aspect-[4/3]">
+              <ULink :to="to || '/'">
+                <NuxtImg
+                  :src="project.image"
+                  :alt="project.title"
+                  class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 group-hover:rounded-t-lg rounded-t-lg" />
+              </ULink>
             </div>
+          </template>
+
+          <div class="flex flex-col">
+            <h2 class="font-semibold text-lg sm:text-xl text-white tracking-tight">
+              {{ project.title }}
+            </h2>
+            <h3 class="text-sm sm:text-base text-gray-300/90 leading-relaxed line-clamp-2">
+              {{ project.description }}
+            </h3>
+          </div>
+          <div class="flex justify-center gap-2 flex-wrap mt-4">
+            <UBadge
+              v-for="(tag, tIndex) in project.tags"
+              :key="tIndex"
+              :label="tag"
+              size="xs"
+              variant="subtle"
+              class="text-[11px] uppercase tracking-wide
+               bg-gradient-to-r from-primary/40 to-cyan-400/30
+               border border-white/10 text-white
+               backdrop-blur-md rounded-full px-2 py-1" />
           </div>
         </UCard>
       </div>

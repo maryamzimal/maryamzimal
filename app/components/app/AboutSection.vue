@@ -54,11 +54,13 @@ const getParticleStyle = () => {
       </h2>
 
       <p class="text-purple-100/90 leading-relaxed text-base sm:text-lg">
-        My journey began with a spark of curiosity — turning ideas into something real on screen.
-        Starting with <span class="text-cyan-400 font-semibold">HTML</span> and
-        <span class="text-fuchsia-400 font-semibold">CSS</span>, I soon found passion in
+        My journey began with a spark of curiosity turning ideas into something real on screen.
+        Starting with <span class=" font-semibold">HTML</span>,
+        <span class=" font-semibold">CSS</span>, and
+        <span class=" text-fuchsia-400 font-semibold">JavaScript,</span>
+        I soon found passion in
         <span class="text-cyan-400 font-semibold">Vue.js</span> and
-        <span class="text-fuchsia-400 font-semibold">Nuxt.js</span>, guided by a
+        <span class="text-fuchsia-400 font-semibold">Nuxt.js</span> guided by a
         <span class="text-cyan-400 font-semibold">Computer Science degree</span> that shaped my approach to problem-solving.
       </p>
 
