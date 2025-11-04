@@ -14,23 +14,22 @@ const techStack = ref([
   { name: 'VS Code', icon: 'logos:visual-studio-code' },
 ])
 
-// Generate particle style dynamically
-const getParticleStyle = (index: number) => {
-  const size = Math.random() * 8 + 3
-  const left = Math.random() * 100
-  const duration = Math.random() * 25 + 15
-  const delay = Math.random() * 10
-  const blur = Math.random() * 3
-  const opacity = Math.random() * 0.4 + 0.3
+const mouse = ref({ x: 0, y: 0 })
+const handleMouseMove = (e: MouseEvent) => {
+  mouse.value = { x: e.clientX, y: e.clientY }
+}
 
+const getParticleStyle = () => {
+  const size = Math.random() * 8 + 2
+  const left = Math.random() * 100
+  const animationDelay = Math.random() * 6
+  const animationDuration = Math.random() * 10 + 10
   return {
     width: `${size}px`,
     height: `${size}px`,
     left: `${left}%`,
-    animationDuration: `${duration}s`,
-    animationDelay: `${delay}s`,
-    filter: `blur(${blur}px)`,
-    opacity,
+    animationDelay: `${animationDelay}s`,
+    animationDuration: `${animationDuration}s`,
   }
 }
 </script>
@@ -38,7 +37,8 @@ const getParticleStyle = (index: number) => {
 <template>
   <section
     class="relative overflow-hidden
-           bg-gradient-to-b from-transparent via-purple-500/5 to-transparent">
+          bg-gradient-to-br from-purple-600/20 via-purple-500/10 to-purple-700/20  py-1.5 sm:py-3"
+    @mousemove="handleMouseMove">
     <!-- 🌌 Particle Background -->
     <div class="absolute inset-0 z-0">
       <div class="particles-container">
@@ -46,19 +46,19 @@ const getParticleStyle = (index: number) => {
           v-for="i in 40"
           :key="i"
           class="particle"
-          :style="getParticleStyle(i)" />
+          :style="getParticleStyle()" />
       </div>
     </div>
 
     <!-- Heading -->
     <h3
-      class="relative z-10 text-3xl sm:text-5xl font-extrabold text-center mb-10
+      class="relative z-10 text-3xl sm:text-5xl font-extrabold text-center m-10
              bg-clip-text text-transparent bg-gradient-to-r from-purple-500 via-teal-400 to-pink-500 tracking-tight">
       Tech Stack & Tools
     </h3>
 
     <!-- Rows -->
-    <div class="relative z-10 space-y-8">
+    <div class="relative z-10 space-y-8 mb-10">
       <!-- Row 1 -->
       <div class="tech-slider">
         <div class="tech-track">
@@ -67,8 +67,8 @@ const getParticleStyle = (index: number) => {
             :key="'row1-' + i"
             class="tech-item">
             <div
-              class="group flex items-center justify-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 rounded-xl
-                     border border-transparent bg-white/10 dark:bg-slate-800/30 backdrop-blur-md
+              class="group flex items-center justify-center gap-2 sm:gap-3 px-5 sm:px-7 py-3 sm:py-4 rounded-xl
+                      bg-white/5 border border-white/10
                      hover:-translate-y-1 transition-all duration-300 ease-out">
               <Icon :name="t.icon" class="transition-transform group-hover:scale-110" size="22" />
               <span class="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200">
@@ -87,8 +87,8 @@ const getParticleStyle = (index: number) => {
             :key="'row2-' + i"
             class="tech-item">
             <div
-              class="group flex items-center justify-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 rounded-xl
-                     border border-transparent bg-white/10 dark:bg-slate-800/30 backdrop-blur-md
+              class="group flex items-center justify-center gap-2 sm:gap-3  px-5 sm:px-7 py-3 sm:py-4 rounded-xl
+                   bg-white/5 border border-white/10
                      hover:-translate-y-1 transition-all duration-300 ease-out">
               <Icon :name="t.icon" class="transition-transform group-hover:scale-110" size="22" />
               <span class="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200">

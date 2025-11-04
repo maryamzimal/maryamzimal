@@ -26,7 +26,7 @@ const getParticleStyle = () => {
 <template>
   <section
     id="about"
-    class="relative min-h-screen flex flex-col lg:flex-row items-center justify-between gap-12 px-6 sm:px-12 py-8 overflow-hidden
+    class="relative min-h-screen flex flex-col lg:flex-row items-center justify-center gap-12 px-6 sm:px-10 py-1.5 sm:py-3 overflow-hidden
            bg-gradient-to-br from-purple-600/20 via-purple-500/10 to-purple-700/20"
     @mousemove="handleMouseMove">
     <!-- 🪩 Particles Background -->
@@ -44,7 +44,7 @@ const getParticleStyle = () => {
     </div>
 
     <!-- 💬 About Content -->
-    <UContainer
+    <!-- <UContainer
       class="relative z-10 max-w-2xl flex-1 text-center lg:text-left space-y-5 animate-fade-in-smooth"
       :style="parallax(40)">
       <h2
@@ -72,10 +72,10 @@ const getParticleStyle = () => {
       <p class="italic text-purple-300">
         Every project reflects growth, creativity, and curiosity turned into creation.
       </p>
-    </UContainer>
+    </UContainer> -->
 
     <!-- 📊 Tech Component -->
-    <div class="relative flex-1 w-full max-w-xl animate-fade-in-up delay-300">
+    <div class=" flex-1 w-full animate-fade-in-up delay-300">
       <AppTechStack />
     </div>
   </section>

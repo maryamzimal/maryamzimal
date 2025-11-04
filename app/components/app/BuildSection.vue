@@ -62,11 +62,10 @@ const getParticleStyle = index => {
       <!-- Heading -->
       <div class="flex flex-col gap-1.5 mb-6 text-center items-center justify-center">
         <h1
-          class="text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text
-                 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500">
+          class="text-4xl sm:text-5xl font-extrabold  bg-clip-text text-transparent bg-gradient-to-r from-purple-500 via-teal-400 to-pink-500 tracking-tight">
           My Core Services
         </h1>
-        <h2 class="text-xl sm:text-2xl text-teal-300 font-bold mt-2">
+        <h2 class="text-xl sm:text-2xl text-teal-100 mt-2">
           Blending creativity and strategy to build digital experience
         </h2>
       </div>
