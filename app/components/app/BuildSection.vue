@@ -1,22 +1,40 @@
 <script setup lang="ts">
-const highlights = [
+const services = [
   {
-    title: 'Responsive & Modern Layouts',
-    icon: 'i-lucide-monitor-smartphone',
+    title: 'Frontend & UI/UX Development',
+    icon: 'i-lucide-monitor',
     description:
-      'Perfect display across mobile, tablet, and desktop — styled with Tailwind and Nuxt UI for a sleek, modern experience.',
+      'Designing fast, responsive, and user-centered interfaces with Vue 3, Nuxt 3, and Tailwind CSS — where performance meets pixel-perfect design.',
+    // features: [
+    //   'Modern responsive layouts',
+    //   'Reusable Nuxt components',
+    //   'Figma-based design systems',
+    //   'Smooth animations & transitions',
+    // ],
   },
   {
-    title: 'SEO & Performance Optimization',
-    icon: 'i-lucide-rocket',
+    title: 'Backend & Full-Stack Solutions',
+    icon: 'i-lucide-server',
     description:
-      'Optimized meta tags, fast loading speed, and efficient code to boost visibility and deliver lightning performance.',
+      'Developing secure, scalable, and efficient server architectures — connecting powerful backends with interactive Nuxt-based frontends.',
+    // features: [
+    //   'RESTful API integration',
+    //   'Drizzle ORM database management',
+    //   'Authentication & route protection',
+    //   'Nuxt Hub integration & data handling',
+    // ],
   },
   {
-    title: 'Scalable & Secure Architecture',
-    icon: 'i-lucide-cloud-cog',
+    title: 'Hosting, Deployment & Optimization',
+    icon: 'i-lucide-cloud',
     description:
-      'Powered by Node.js and Firebase — secure, fast, and designed to scale effortlessly as your app grows.',
+      'Deploying and optimizing web apps with Nuxt Hub and Cloudflare — ensuring reliability, speed, and global performance.',
+    // features: [
+    //   'Nuxt Hub & Cloudflare setup',
+    //   'Custom domain configuration',
+    //   'Performance & scaling optimization',
+    //   'SEO and Core Web Vitals improvements',
+    // ],
   },
 ]
 
@@ -58,9 +76,9 @@ const getParticleStyle = index => {
       </div>
     </div>
 
-    <UContainer class="relative z-10 text-center space-y-12">
-      <!-- Heading -->
-      <div class="flex flex-col gap-1.5 mb-6 text-center items-center justify-center">
+    <UContainer class="relative z-10 space-y-16">
+      <!-- Header -->
+      <div class="flex flex-col gap-1.5 mb-11 text-center items-center justify-center">
         <h1
           class="text-4xl sm:text-5xl font-extrabold  bg-clip-text text-transparent bg-gradient-to-r from-purple-500 via-teal-400 to-pink-500 tracking-tight">
           My Core Services
@@ -70,36 +88,49 @@ const getParticleStyle = index => {
         </h2>
       </div>
 
-      <!-- Cards -->
+      <!-- Service Cards -->
       <div
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-center mt-6 sm:mt-10">
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 justify-items-center">
         <UCard
-          v-for="(item, index) in highlights"
+          v-for="(service, index) in services"
           :key="index"
-          class="group relative overflow-hidden p-6 text-left
-                 bg-white/10 dark:bg-slate-900/50 backdrop-blur-xl
-                 border border-transparent rounded-2xl
-                 transition-all duration-300
-                 hover:border-purple-300/50 hover:scale-[1.04]
-                 hover:shadow-[0_0_25px_rgba(139,92,246,0.2)]
-                 animate-fade-in-up">
+          class="group w-full max-w-sm p-5 sm:p-6 rounded-2xl border border-purple-500/10
+          bg-white/5 dark:bg-slate-900/40 backdrop-blur-xl shadow-md hover:shadow-purple-500/20
+          hover:-translate-y-2 transition-all duration-300 ease-out">
           <!-- Icon -->
           <div
-            class="flex items-center justify-center w-12 h-12 rounded-xl
-                   bg-gradient-to-r from-purple-500 to-pink-500 text-white
-                   shadow-md mb-4 group-hover:shadow-purple-400/40 transition-all duration-300">
-            <UIcon :name="item.icon" class="w-6 h-6" />
+            class="w-12 h-12 flex items-center justify-center rounded-xl
+            bg-gradient-to-br from-cyan-500/10 via-purple-500/10 to-pink-500/10
+            text-cyan-400 group-hover:from-cyan-500/20 group-hover:to-pink-500/20
+            transition-all duration-300">
+            <UIcon :name="service.icon" class="w-6 h-6" />
           </div>
 
-          <!-- Text -->
-          <div class="relative z-10 space-y-1">
-            <h3 class="font-semibold text-lg text-white">
-              {{ item.title }}
-            </h3>
-            <p class="text-purple-200 text-sm leading-relaxed">
-              {{ item.description }}
-            </p>
-          </div>
+          <!-- Title -->
+          <h2
+            class="text-lg font-semibold mt-4 text-cyan-400 group-hover: transition-colors duration-300">
+            {{ service.title }}
+          </h2>
+
+          <!-- Description -->
+          <p class="text-sm text-purple-200/90 mt-2 leading-relaxed">
+            {{ service.description }}
+          </p>
+
+          <!-- Features -->
+          <ul
+            v-if="service.features"
+            class="mt-4 text-sm text-purple-300/90 space-y-1.5">
+            <li
+              v-for="(feature, i) in service.features"
+              :key="i"
+              class="flex items-start gap-2">
+              <UIcon
+                name="i-lucide-check-circle"
+                class="text-cyan-400 w-4 h-4 mt-0.5" />
+              <span>{{ feature }}</span>
+            </li>
+          </ul>
         </UCard>
       </div>
     </UContainer>

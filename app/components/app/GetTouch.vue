@@ -62,11 +62,12 @@ const getParticleStyle = index => {
         <UButton
           label="Email Me"
           icon="i-lucide-mail"
+          variant="subtle"
           size="lg"
           class="w-full sm:w-auto px-8 py-3 rounded-2xl font-semibold
-        bg-gradient-to-r from-purple-500 via-teal-500 to-pink-600
-        text-white shadow-lg hover:shadow-xl hover:scale-105
-        transition-all duration-300"
+  bg-gradient-to-r from-purple-600 via-indigo-500 to-teal-500
+  text-white shadow-md hover:shadow-lg hover:-translate-y-0.5
+  transition-all duration-300 ease-out"
           href="mailto:maryamzimal24@gmail.com" />
 
         <UButton
@@ -76,7 +77,7 @@ const getParticleStyle = index => {
           size="lg"
           class="w-full sm:w-auto px-8 py-3 rounded-2xl font-semibold
         text-white shadow-lg hover:shadow-xl hover:scale-105
-        transition-all duration-300"
+        transition-all duration-300 bg-slate-800"
           href="https://www.linkedin.com/in/your-linkedin-maryam-shahid"
           target="_blank" />
       </div>
