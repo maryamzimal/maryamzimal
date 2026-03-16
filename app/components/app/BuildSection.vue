@@ -1,167 +1,180 @@
 <script setup lang="ts">
+const el = ref<HTMLElement | null>(null)
+
 const services = [
   {
-    title: 'Frontend & UI/UX Development',
-    icon: 'i-lucide-monitor',
-    description:
-      'Designing fast, responsive, and user-centered interfaces with Vue 3, Nuxt 3, and Tailwind CSS — where performance meets pixel-perfect design.',
-    // features: [
-    //   'Modern responsive layouts',
-    //   'Reusable Nuxt components',
-    //   'Figma-based design systems',
-    //   'Smooth animations & transitions',
-    // ],
+    num: '01',
+    title: 'Frontend & UI Development',
+    description: 'Pixel-perfect interfaces with Vue 3 and Nuxt — built for clarity, performance, and delight. From design systems to micro-interactions.',
   },
   {
-    title: 'Backend & Full-Stack Solutions',
-    icon: 'i-lucide-server',
-    description:
-      'Developing secure, scalable, and efficient server architectures — connecting powerful backends with interactive Nuxt-based frontends.',
-    // features: [
-    //   'RESTful API integration',
-    //   'Drizzle ORM database management',
-    //   'Authentication & route protection',
-    //   'Nuxt Hub integration & data handling',
-    // ],
+    num: '02',
+    title: 'Full-Stack Architecture',
+    description: 'Scalable, secure backends and APIs integrated seamlessly with modern Nuxt frontends. Drizzle ORM, SQLite, JWT auth — production-ready from day one.',
   },
   {
-    title: 'Hosting, Deployment & Optimization',
-    icon: 'i-lucide-cloud',
-    description:
-      'Deploying and optimizing web apps with Nuxt Hub and Cloudflare — ensuring reliability, speed, and global performance.',
-    // features: [
-    //   'Nuxt Hub & Cloudflare setup',
-    //   'Custom domain configuration',
-    //   'Performance & scaling optimization',
-    //   'SEO and Core Web Vitals improvements',
-    // ],
+    num: '03',
+    title: 'Deployment & Optimization',
+    description: 'End-to-end deployment on Cloudflare and NuxtHub. Performance tuning, Core Web Vitals, CI/CD pipelines, and global edge delivery.',
   },
 ]
 
-// Particle styles
-const getParticleStyle = index => {
-  const size = Math.random() * 8 + 2
-  const left = Math.random() * 100
-  const animationDelay = Math.random() * 6
-  const animationDuration = Math.random() * 10 + 10
-
-  return {
-    width: `${size}px`,
-    height: `${size}px`,
-    left: `${left}%`,
-    animationDelay: `${animationDelay}s`,
-    animationDuration: `${animationDuration}s`
-  }
-}
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry?.isIntersecting) {
+        el.value?.querySelectorAll('.reveal').forEach(node => node.classList.add('visible'))
+        observer.disconnect()
+      }
+    },
+    { threshold: 0.1 }
+  )
+  if (el.value) observer.observe(el.value)
+  onUnmounted(() => observer.disconnect())
+})
 </script>
 
 <template>
-  <section
-    class="py-20 px-6 relative overflow-hidden min-h-screen
-           bg-gradient-to-br from-purple-600/20 via-purple-500/10 to-purple-700/20">
-    <!-- Particles & Grid -->
-    <div class="absolute inset-0 z-0">
-      <!-- 🪩 Particles (animated globally) -->
-      <div class="particles-container">
-        <div
-          v-for="i in 35"
-          :key="i"
-          class="particle"
-          :style="getParticleStyle(i)" />
+  <section id="services" ref="el" class="services section-pad">
+    <div class="section-container">
+      <!-- Label -->
+      <div class="section-label reveal">
+        <span class="section-label__num">04</span>
+        <span class="section-label__line" />
+        <span class="section-label__text">Services</span>
       </div>
 
-      <!-- 🧊 Grid background -->
-      <div class="absolute inset-0 opacity-5">
-        <div class="grid-bg" />
-      </div>
-    </div>
-
-    <UContainer class="relative z-10 space-y-16">
-      <!-- Header -->
-      <div class="flex flex-col gap-1.5 mb-11 text-center items-center justify-center">
-        <h1
-          class="text-4xl sm:text-5xl font-extrabold  bg-clip-text text-transparent bg-gradient-to-r from-purple-500 via-teal-400 to-pink-500 tracking-tight">
-          My Core Services
-        </h1>
-        <h2 class="text-xl sm:text-2xl text-teal-100 mt-2">
-          Blending creativity and strategy to build digital experience
+      <div class="services__header">
+        <h2 class="text-headline reveal reveal-delay-1">
+          What I build<br>
+          <span class="text-gradient">for you.</span>
         </h2>
       </div>
 
-      <!-- Service Cards -->
-      <div
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 justify-items-center">
-        <UCard
-          v-for="(service, index) in services"
-          :key="index"
-          class="group w-full max-w-sm p-5 sm:p-6 rounded-2xl border border-purple-500/10
-          bg-white/5 dark:bg-slate-900/40 backdrop-blur-xl shadow-md hover:shadow-purple-500/20
-          hover:-translate-y-2 transition-all duration-300 ease-out">
-          <!-- Icon -->
-          <div
-            class="w-12 h-12 flex items-center justify-center rounded-xl
-            bg-gradient-to-br from-cyan-500/10 via-purple-500/10 to-pink-500/10
-            text-cyan-400 group-hover:from-cyan-500/20 group-hover:to-pink-500/20
-            transition-all duration-300">
-            <UIcon :name="service.icon" class="w-6 h-6" />
+      <!-- Editorial numbered list -->
+      <div class="services__list">
+        <div
+          v-for="(service, i) in services"
+          :key="service.num"
+          :class="['service-row', 'reveal', `reveal-delay-${i + 2}`]">
+          <span class="service-row__num">{{ service.num }}</span>
+          <div class="service-row__content">
+            <h3 class="service-row__title">
+              {{ service.title }}
+            </h3>
+            <p class="service-row__desc">
+              {{ service.description }}
+            </p>
           </div>
-
-          <!-- Title -->
-          <h2
-            class="text-lg font-semibold mt-4 text-cyan-400 group-hover: transition-colors duration-300">
-            {{ service.title }}
-          </h2>
-
-          <!-- Description -->
-          <p class="text-sm text-purple-200/90 mt-2 leading-relaxed">
-            {{ service.description }}
-          </p>
-
-          <!-- Features -->
-          <ul
-            v-if="service.features"
-            class="mt-4 text-sm text-purple-300/90 space-y-1.5">
-            <li
-              v-for="(feature, i) in service.features"
-              :key="i"
-              class="flex items-start gap-2">
-              <UIcon
-                name="i-lucide-check-circle"
-                class="text-cyan-400 w-4 h-4 mt-0.5" />
-              <span>{{ feature }}</span>
-            </li>
-          </ul>
-        </UCard>
+          <div class="service-row__arrow">
+            ↗
+          </div>
+        </div>
       </div>
-    </UContainer>
+    </div>
   </section>
 </template>
 
 <style scoped>
-/* Animations */
-@keyframes particle-float {
-  0% { opacity: 0; transform: translateY(100vh) translateX(0px); }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { opacity: 0; transform: translateY(-100px) translateX(50px); }
+.services {
+  border-top: 1px solid var(--color-border);
 }
 
-.particles-container {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  pointer-events: none;
+.services__header {
+  margin-bottom: 56px;
 }
 
-.particle {
-  position: absolute;
-  background: rgba(139, 92, 246, 0.3);
-  border-radius: 50%;
-  animation: particle-float linear infinite;
+/* ── Service List ─────────────────────── */
+.services__list {
+  display: flex;
+  flex-direction: column;
 }
 
-.particle:nth-child(2n) { background: rgba(236, 72, 153, 0.3); }
-.particle:nth-child(3n) { background: rgba(34, 197, 94, 0.2); }
-.particle:nth-child(4n) { background: rgba(251, 191, 36, 0.3); }
+.service-row {
+  display: grid;
+  grid-template-columns: 60px 1fr 36px;
+  gap: 24px;
+  align-items: start;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--color-border);
+  cursor: default;
+  transition: background var(--duration-base);
+}
+
+.service-row:first-child {
+  border-top: 1px solid var(--color-border);
+}
+
+@media (min-width: 768px) {
+  .service-row {
+    grid-template-columns: 80px 1fr 48px;
+    gap: 40px;
+    padding: 40px 0;
+  }
+}
+
+.service-row:hover {
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-left: -12px;
+  margin-right: -12px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 8px;
+}
+
+.service-row__num {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-accent);
+  padding-top: 4px;
+  letter-spacing: 0.05em;
+}
+
+.service-row__content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.service-row__title {
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.service-row__desc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-text-2);
+  max-width: 580px;
+  margin: 0;
+}
+
+.service-row__arrow {
+  font-size: 22px;
+  color: var(--color-text-muted);
+  padding-top: 2px;
+  transition: color var(--duration-fast), transform var(--duration-base);
+}
+
+.service-row:hover .service-row__arrow {
+  color: var(--color-accent);
+  transform: translate(4px, -4px);
+}
+
+/* Reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s var(--ease-smooth), transform 0.7s var(--ease-smooth);
+}
+
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.32s; }
+.reveal-delay-4 { transition-delay: 0.44s; }
 </style>

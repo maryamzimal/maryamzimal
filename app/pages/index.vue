@@ -1,10 +1,11 @@
 <template>
-  <UMain>
+  <div>
     <AppHeroSection />
-    <!-- <AppAboutSection /> -->
+    <AppIdentitySection />
     <AppTechStack />
     <AppBuildSection />
     <AppFeaturedProjects />
+    <AppGraphSection />
     <AppGetTouch />
-  </UMain>
+  </div>
 </template>

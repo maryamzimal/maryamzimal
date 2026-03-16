@@ -1,140 +1,213 @@
 <script setup lang="ts">
-// Reuse same particle animation logic as other sections
-const getParticleStyle = index => {
-  const size = Math.random() * 8 + 2
-  const left = Math.random() * 100
-  const animationDelay = Math.random() * 6
-  const animationDuration = Math.random() * 10 + 10
+const el = ref<HTMLElement | null>(null)
 
-  return {
-    width: `${size}px`,
-    height: `${size}px`,
-    left: `${left}%`,
-    animationDelay: `${animationDelay}s`,
-    animationDuration: `${animationDuration}s`
-  }
-}
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry?.isIntersecting) {
+        el.value?.querySelectorAll('.reveal').forEach(node => node.classList.add('visible'))
+        observer.disconnect()
+      }
+    },
+    { threshold: 0.1 }
+  )
+  if (el.value) observer.observe(el.value)
+  onUnmounted(() => observer.disconnect())
+})
 </script>
 
 <template>
-  <section
-    class="relative overflow-hidden min-h-screen flex flex-col justify-center items-center text-center
-  bg-gradient-to-br from-purple-600/20 via-purple-500/10 to-purple-700/20 py-16 px-4 sm:px-8 md:px-12">
-    <!-- Background Elements -->
-    <div class="absolute inset-0 z-0">
-      <div class="particles-container">
-        <div
-          v-for="i in 30"
-          :key="i"
-          class="particle"
-          :style="getParticleStyle(i)" />
+  <section ref="el" class="contact section-pad">
+    <div class="section-container">
+      <!-- Label -->
+      <div class="section-label reveal">
+        <span class="section-label__num">07</span>
+        <span class="section-label__line" />
+        <span class="section-label__text">Get in touch</span>
       </div>
-      <div class="absolute inset-0 opacity-5">
-        <div class="grid-bg" />
+
+      <div class="contact__body">
+        <h2 class="contact__heading reveal reveal-delay-1">
+          Let's build<br>
+          something<br>
+          <span class="text-gradient">great.</span>
+        </h2>
+
+        <div class="contact__right">
+          <p class="text-body-lg reveal reveal-delay-2">
+            Have an idea, a project, or just want to say hi? I'm always open to the right conversations.
+          </p>
+
+          <div class="contact__links reveal reveal-delay-3">
+            <a
+              href="mailto:maryamzimal24@gmail.com"
+              class="contact__email link-reveal">
+              maryamzimal24@gmail.com
+            </a>
+          </div>
+
+          <div class="contact__actions reveal reveal-delay-4">
+            <a
+              href="mailto:maryamzimal24@gmail.com"
+              class="contact__btn">
+              Send an email
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/maryam-s-a5ab7b389/"
+              target="_blank"
+              class="contact__btn contact__btn--outline">
+              LinkedIn profile
+            </a>
+          </div>
+
+          <div class="contact__note reveal reveal-delay-5">
+            <span class="pulse-dot" style="width:6px;height:6px;" />
+            <span>Typically responds within 24 hours</span>
+          </div>
+        </div>
       </div>
     </div>
-
-    <!-- Main Content -->
-    <UContainer class="relative z-10 max-w-4xl flex flex-col items-center justify-center space-y-8">
-      <!-- Heading -->
-      <h1
-        class="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight
-      text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-500 to-purple-500
-      animate-fade-in-up px-2">
-        Have an Idea?
-        <br class="sm:hidden">
-        <span
-          class="text-transparent bg-clip-text bg-gradient-to-r
-        from-cyan-400 via-fuchsia-500 to-purple-500">
-          Let's Build It
-        </span>
-      </h1>
-
-      <!-- Paragraph -->
-      <p
-        class="text-purple-200 text-base sm:text-lg md:text-xl opacity-90 leading-relaxed
-      max-w-2xl mx-auto px-4">
-        Got a project in mind? I craft engaging, user-focused experiences.
-      </p>
-
-      <!-- Buttons -->
-      <div class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 mt-4">
-        <UButton
-          label="Email Me"
-          icon="i-lucide-mail"
-          variant="subtle"
-          size="lg"
-          class="w-full sm:w-auto px-8 py-3 rounded-2xl font-semibold
-  bg-gradient-to-r from-purple-600 via-indigo-500 to-teal-500
-  text-white shadow-md hover:shadow-lg hover:-translate-y-0.5
-  transition-all duration-300 ease-out"
-          href="mailto:maryamzimal24@gmail.com" />
-
-        <UButton
-          label="LinkedIn"
-          icon="i-simple-icons-linkedin"
-          variant="subtle"
-          size="lg"
-          class="w-full sm:w-auto px-8 py-3 rounded-2xl font-semibold
-        text-white shadow-lg hover:shadow-xl hover:scale-105
-        transition-all duration-300 bg-slate-800"
-          href="https://www.linkedin.com/in/your-linkedin-maryam-shahid"
-          target="_blank" />
-      </div>
-    </UContainer>
   </section>
 </template>
 
 <style scoped>
-/* --- Animations reused globally --- */
-@keyframes particle-float {
-  0% { opacity: 0; transform: translateY(100vh) translateX(0px); }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { opacity: 0; transform: translateY(-100px) translateX(50px); }
+.contact {
+  border-top: 1px solid var(--color-border);
 }
 
-@keyframes grid-move {
-  0% { transform: translate(0, 0); }
-  100% { transform: translate(50px, 50px); }
+.contact__body {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
 }
 
-@keyframes fade-in-up {
-  0% { opacity: 0; transform: translateY(30px); }
-  100% { opacity: 1; transform: translateY(0); }
+@media (min-width: 900px) {
+  .contact__body {
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
 }
 
-/* --- Classes for reusable animations --- */
-.particles-container {
+.contact__heading {
+  font-size: clamp(52px, 8vw, 100px);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  margin: 0;
+}
+
+.contact__right {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding-top: 8px;
+}
+
+@media (min-width: 900px) {
+  .contact__right { padding-top: 16px; }
+}
+
+.contact__links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contact__email {
+  font-size: clamp(15px, 2vw, 20px);
+  font-weight: 500;
+  color: var(--color-text);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.contact__email::after {
+  content: '';
   position: absolute;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  pointer-events: none;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--color-accent);
+  transition: width var(--duration-base) var(--ease-smooth);
 }
 
-.particle {
-  position: absolute;
-  background: rgba(139, 92, 246, 0.3);
-  border-radius: 50%;
-  animation: particle-float linear infinite;
+.contact__email:hover {
+  color: var(--color-accent);
 }
 
-.particle:nth-child(2n) { background: rgba(236, 72, 153, 0.3); }
-.particle:nth-child(3n) { background: rgba(34, 197, 94, 0.2); }
-.particle:nth-child(4n) { background: rgba(251, 191, 36, 0.3); }
-
-.grid-bg {
-  width: 100%;
-  height: 100%;
-  background-image:
-    linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
-  background-size: 60px 60px;
-  animation: grid-move 25s linear infinite;
+.contact__email {
+  position: relative;
 }
 
-.animate-fade-in-up {
-  animation: fade-in-up 1s ease-out;
+/* CTA Buttons */
+.contact__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
 }
+
+.contact__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 22px;
+  background: var(--color-accent);
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 8px;
+  letter-spacing: -0.01em;
+  transition: background var(--duration-fast), transform var(--duration-fast), box-shadow var(--duration-fast);
+}
+
+.contact__btn:hover {
+  background: #4f46e5;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.35);
+}
+
+.contact__btn--outline {
+  background: transparent;
+  color: var(--color-text-2);
+  border: 1px solid var(--color-border);
+}
+
+.contact__btn--outline:hover {
+  background: rgba(255,255,255,0.03);
+  border-color: var(--color-border-hover);
+  color: var(--color-text);
+  box-shadow: none;
+  transform: none;
+}
+
+.contact__note {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+
+/* Reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s var(--ease-smooth), transform 0.7s var(--ease-smooth);
+}
+
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.22s; }
+.reveal-delay-3 { transition-delay: 0.34s; }
+.reveal-delay-4 { transition-delay: 0.46s; }
+.reveal-delay-5 { transition-delay: 0.58s; }
 </style>

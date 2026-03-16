@@ -1,99 +1,86 @@
 <script setup lang="ts">
-const techStack = ref([
-  { name: 'HTML5', icon: 'logos:html-5' },
-  { name: 'CSS', icon: 'logos:css-3' },
-  { name: 'Tailwind CSS', icon: 'logos:tailwindcss-icon' },
-  { name: 'TypeScript', icon: 'logos:typescript-icon' },
-  { name: 'JavaScript', icon: 'logos:javascript' },
-  { name: 'Vue.js', icon: 'logos:vue' },
-  { name: 'Nuxt UI', icon: 'logos:nuxt-icon' },
-  { name: 'Git', icon: 'logos:git-icon' },
-  { name: 'Node.js', icon: 'logos:nodejs-icon' },
-  { name: 'SQLite', icon: 'logos:sqlite' },
-  { name: 'Python', icon: 'logos:python' },
-  { name: 'VS Code', icon: 'logos:visual-studio-code' },
-])
+const el = ref<HTMLElement | null>(null)
 
-const mouse = ref({ x: 0, y: 0 })
-const handleMouseMove = (e: MouseEvent) => {
-  mouse.value = { x: e.clientX, y: e.clientY }
-}
+const stackCategories = [
+  {
+    label: 'Core Web',
+    items: [
+      { name: 'HTML5', icon: 'logos:html-5' },
+      { name: 'CSS3', icon: 'logos:css-3' },
+      { name: 'JavaScript', icon: 'logos:javascript' },
+      { name: 'TypeScript', icon: 'logos:typescript-icon' },
+    ],
+  },
+  {
+    label: 'Frameworks',
+    items: [
+      { name: 'Vue.js', icon: 'logos:vue' },
+      { name: 'Nuxt 3', icon: 'logos:nuxt-icon' },
+      { name: 'Tailwind', icon: 'logos:tailwindcss-icon' },
+    ],
+  },
+  {
+    label: 'Tools & Infra',
+    items: [
+      { name: 'Node.js', icon: 'logos:nodejs-icon' },
+      { name: 'SQLite', icon: 'logos:sqlite' },
+      { name: 'Python', icon: 'logos:python' },
+      { name: 'Git', icon: 'logos:git-icon' },
+      { name: 'VS Code', icon: 'logos:visual-studio-code' },
+    ],
+  },
+]
 
-const getParticleStyle = () => {
-  const size = Math.random() * 8 + 2
-  const left = Math.random() * 100
-  const animationDelay = Math.random() * 6
-  const animationDuration = Math.random() * 10 + 10
-  return {
-    width: `${size}px`,
-    height: `${size}px`,
-    left: `${left}%`,
-    animationDelay: `${animationDelay}s`,
-    animationDuration: `${animationDuration}s`,
-  }
-}
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry?.isIntersecting) {
+        el.value?.querySelectorAll('.reveal').forEach(node => node.classList.add('visible'))
+        observer.disconnect()
+      }
+    },
+    { threshold: 0.1 }
+  )
+  if (el.value) observer.observe(el.value)
+  onUnmounted(() => observer.disconnect())
+})
 </script>
 
 <template>
-  <section
-    class="relative overflow-hidden
-          bg-gradient-to-br from-purple-600/20 via-purple-500/10 to-purple-700/20  py-1.5 sm:py-3"
-    @mousemove="handleMouseMove">
-    <!-- 🌌 Particle Background -->
-    <div class="absolute inset-0 z-0">
-      <div class="particles-container">
+  <section id="stack" ref="el" class="stack section-pad">
+    <div class="section-container">
+      <!-- Label -->
+      <div class="section-label reveal">
+        <span class="section-label__num">03</span>
+        <span class="section-label__line" />
+        <span class="section-label__text">My stack</span>
+      </div>
+
+      <div class="stack__header">
+        <h2 class="text-headline reveal reveal-delay-1">
+          Tools I work<br>
+          with <span class="text-gradient">daily.</span>
+        </h2>
+        <p class="text-body-lg reveal reveal-delay-2" style="max-width:440px; margin-top: 0;">
+          I pick the right tools for the job, not the most popular ones. My stack is lean, fast, and battle-tested.
+        </p>
+      </div>
+
+      <div class="stack__grid">
         <div
-          v-for="i in 40"
-          :key="i"
-          class="particle"
-          :style="getParticleStyle()" />
-      </div>
-    </div>
-
-    <!-- Heading -->
-    <h3
-      class="relative z-10 text-3xl sm:text-5xl font-extrabold text-center m-10
-             bg-clip-text text-transparent bg-gradient-to-r from-purple-500 via-teal-400 to-pink-500 tracking-tight">
-      Tech Stack & Tools
-    </h3>
-
-    <!-- Rows -->
-    <div class="relative z-10 space-y-8 mb-10">
-      <!-- Row 1 -->
-      <div class="tech-slider">
-        <div class="tech-track">
-          <div
-            v-for="(t, i) in [...techStack, ...techStack]"
-            :key="'row1-' + i"
-            class="tech-item">
-            <div
-              class="group flex items-center justify-center gap-2 sm:gap-3 px-5 sm:px-7 py-3 sm:py-4 rounded-xl
-                      bg-white/5 border border-white/10
-                     hover:-translate-y-1 transition-all duration-300 ease-out">
-              <Icon :name="t.icon" class="transition-transform group-hover:scale-110" size="22" />
-              <span class="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200">
-                {{ t.name }}
-              </span>
-            </div>
+          v-for="(cat, ci) in stackCategories"
+          :key="cat.label"
+          :class="['stack__category', 'reveal', `reveal-delay-${ci + 2}`]">
+          <div class="stack__cat-label">
+            {{ cat.label }}
           </div>
-        </div>
-      </div>
-
-      <!-- Row 2 (reverse scroll) -->
-      <div class="tech-slider">
-        <div class="tech-track reverse">
-          <div
-            v-for="(t, i) in [...techStack, ...techStack]"
-            :key="'row2-' + i"
-            class="tech-item">
+          <div class="stack__items">
             <div
-              class="group flex items-center justify-center gap-2 sm:gap-3  px-5 sm:px-7 py-3 sm:py-4 rounded-xl
-                   bg-white/5 border border-white/10
-                     hover:-translate-y-1 transition-all duration-300 ease-out">
-              <Icon :name="t.icon" class="transition-transform group-hover:scale-110" size="22" />
-              <span class="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200">
-                {{ t.name }}
-              </span>
+              v-for="item in cat.items"
+              :key="item.name"
+              class="stack__item">
+              <Icon :name="item.icon" size="22" />
+              <span class="stack__item-name">{{ item.name }}</span>
             </div>
           </div>
         </div>
@@ -103,49 +90,113 @@ const getParticleStyle = () => {
 </template>
 
 <style scoped>
-/* 🔹 Particle Animation */
-@keyframes particle-float {
-  0% { transform: translate3d(0, 100vh, 0) rotate(0deg); }
-  50% { transform: translate3d(30px, -50vh, 0) rotate(180deg); }
-  100% { transform: translate3d(-30px, -100vh, 0) rotate(360deg); }
+.stack {
+  position: relative;
+  border-top: 1px solid var(--color-border);
 }
 
-.particles-container {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  pointer-events: none;
+.stack__header {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-bottom: 56px;
 }
 
-.particle {
-  position: absolute;
-  bottom: -10px;
-  background: rgba(139, 92, 246, 0.25);
-  border-radius: 50%;
-  animation: particle-float linear infinite;
-  will-change: transform, opacity;
+@media (min-width: 768px) {
+  .stack__header {
+    grid-template-columns: 1fr 1fr;
+    align-items: end;
+    gap: 40px;
+  }
 }
 
-.particle:nth-child(3n) { background: rgba(236, 72, 153, 0.25); }
-.particle:nth-child(4n) { background: rgba(34, 197, 94, 0.25); }
-.particle:nth-child(5n) { background: rgba(56, 189, 248, 0.25); }
-.particle:nth-child(2n) { background: rgba(251, 191, 36, 0.25); }
-
-/* 🔹 Tech Slider */
-.tech-slider { overflow: hidden; width: 100%; position: relative; }
-.tech-track { display: flex; width: max-content; animation: scroll-left 35s linear infinite; will-change: transform; }
-.tech-track.reverse { animation: scroll-right 38s linear infinite; }
-.tech-item { flex: 0 0 auto; margin-right: 1.25rem; }
-
-.tech-slider:hover .tech-track { animation-play-state: paused; }
-
-@keyframes scroll-left {
-  0% { transform: translate3d(0, 0, 0); }
-  100% { transform: translate3d(-50%, 0, 0); }
+/* ── Grid ─────────────────────────────── */
+.stack__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
 }
-@keyframes scroll-right {
-  0% { transform: translate3d(-50%, 0, 0); }
-  100% { transform: translate3d(0, 0, 0); }
+
+@media (min-width: 640px) {
+  .stack__grid { grid-template-columns: repeat(2, 1fr); }
 }
+
+@media (min-width: 1024px) {
+  .stack__grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ── Category ─────────────────────────── */
+.stack__category {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 28px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-surface);
+  transition: border-color var(--duration-base);
+}
+
+.stack__category:hover {
+  border-color: var(--color-border-hover);
+}
+
+.stack__cat-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+/* ── Items ─────────────────────────────── */
+.stack__items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stack__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  transition: background var(--duration-fast);
+  cursor: default;
+}
+
+.stack__item:hover {
+  background: rgba(255,255,255,0.04);
+}
+
+.stack__item-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-2);
+  transition: color var(--duration-fast);
+}
+
+.stack__item:hover .stack__item-name {
+  color: var(--color-text);
+}
+
+/* Reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s var(--ease-smooth),
+    transform 0.7s var(--ease-smooth);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.22s; }
+.reveal-delay-3 { transition-delay: 0.34s; }
+.reveal-delay-4 { transition-delay: 0.46s; }
 </style>

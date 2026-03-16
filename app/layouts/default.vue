@@ -2,8 +2,23 @@
 </script>
 
 <template>
-  <div>
-    <slot />
+  <div class="layout-root">
+    <AppHeader />
+    <main>
+      <slot />
+    </main>
     <AppFooter />
   </div>
 </template>
+
+<style scoped>
+.layout-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+</style>

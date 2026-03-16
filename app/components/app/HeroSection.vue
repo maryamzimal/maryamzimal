@@ -1,341 +1,321 @@
-<script setup>
+<script setup lang="ts">
 const appConfig = useAppConfig()
 const socialLinks = computed(() => appConfig.footer?.links || [])
-defineProps({
-  name: {
-    type: String,
-    default: 'Maryam Zimal'
-  },
-  title: {
-    type: String,
-    default: 'Full Stack (Nuxt.Js) Developer'
-  },
-  description: {
-    type: String,
-    default: 'Crafting elegant, high-performance, and scalable web applications using modern frameworks — blending creativity with clean, optimized code.'
-  }
-})
 
-// Generate random styles for floating particles
-const getParticleStyle = index => {
-  const size = Math.random() * 8 + 2
-  const left = Math.random() * 100
-  const animationDelay = Math.random() * 6
-  const animationDuration = Math.random() * 10 + 10
+const el = ref<HTMLElement | null>(null)
+const mouseX = ref(0)
+const mouseY = ref(0)
 
-  return {
-    width: `${size}px`,
-    height: `${size}px`,
-    left: `${left}%`,
-    animationDelay: `${animationDelay}s`,
-    animationDuration: `${animationDuration}s`
-  }
+const handleMouseMove = (e: MouseEvent) => {
+  if (!el.value) return
+  const rect = el.value.getBoundingClientRect()
+  mouseX.value = (e.clientX - rect.left) / rect.width
+  mouseY.value = (e.clientY - rect.top) / rect.height
 }
+
+const glowStyle = computed(() => ({
+  background: `radial-gradient(ellipse 80% 60% at ${mouseX.value * 100}% ${mouseY.value * 100}%, rgba(99,102,241,0.14) 0%, transparent 65%)`
+}))
 </script>
 
 <template>
-  <section class="min-h-screen flex items-center justify-center relative overflow-hidden">
-    <!-- Background gradient -->
-    <div class="absolute inset-0 bg-gradient-to-br from-primary-500/20 via-transparent to-purple-500/20" />
-    <!-- Bottom gradient that flows into skills section -->
-    <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-purple-500/20" />
+  <section
+    ref="el"
+    class="hero"
+    @mousemove="handleMouseMove">
+    <!-- Mouse-tracking ambient glow -->
+    <div class="hero__glow" :style="glowStyle" />
+    <!-- Static base ambient -->
+    <div class="ambient-bg" />
+    <!-- Faint grid -->
+    <div class="hero__grid" />
 
-    <!-- Animated Background Elements -->
-    <div class="absolute inset-0">
-      <!-- Floating geometric shapes -->
-      <div class="absolute top-20 left-10 w-20 h-20 bg-primary-500/10 rounded-full animate-float-slow" />
-      <div class="absolute top-40 right-20 w-16 h-16 bg-purple-500/10 rounded-lg rotate-45 animate-float-reverse" />
-      <div class="absolute bottom-32 left-20 w-12 h-12 bg-pink-500/10 rounded-full animate-pulse-slow" />
-      <div class="absolute bottom-20 right-32 w-24 h-24 bg-blue-500/10 rounded-lg animate-spin-slow" />
-
-      <!-- Animated lines -->
-      <div
-        class="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary-500/30 to-transparent animate-slide-right" />
-      <div
-        class="absolute bottom-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-500/30 to-transparent animate-slide-left" />
-
-      <!-- Floating particles -->
-      <div class="particles-container">
-        <div v-for="i in 35" :key="i" class="particle" :style="getParticleStyle(i)" />
+    <div class="hero__inner section-container">
+      <!-- Availability badge -->
+      <div class="hero__badge reveal reveal-delay-1">
+        <span class="pulse-dot" />
+        <span class="hero__badge-text">Available for new projects</span>
       </div>
 
-      <!-- Grid pattern -->
-      <div class="absolute inset-0 opacity-5">
-        <div class="grid-bg" />
+      <!-- Main identity block -->
+      <div class="hero__identity">
+        <h1 class="hero__name reveal reveal-delay-2">
+          Maryam<br>
+          <span class="text-gradient">Zimal</span>
+        </h1>
+        <div class="hero__role reveal reveal-delay-3">
+          <span class="hero__role-bar" />
+          <span class="hero__role-text">Full-Stack Developer · Nuxt.js Specialist</span>
+        </div>
       </div>
-    </div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-      <div class="space-y-8">
-        <div class="flex justify-center w-full">
-          <div class="group relative flex max-w-fit flex-row items-center justify-center rounded-full bg-white/40 px-4 py-1.5 text-xs sm:text-sm font-medium shadow-[inset_0_-8px_10px_#8fdfff1f] backdrop-blur-sm transition-shadow duration-500 ease-out [--bg-size:300%] hover:shadow-[inset_0_-5px_10px_#8fdfff3f] dark:bg-black/40">
-            <div class="absolute inset-0 block h-full w-full animate-gradient bg-gradient-to-r from-purple-500/50 via-green-400/50 to-orange-500/50 bg-[length:var(--bg-size)_100%] p-[1px] ![mask-composite:subtract] [border-radius:inherit] [mask:linear-gradient(#fff_0_0)_content-box,linear-gradient(#fff_0_0)]" />
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 text-center sm:text-left" data-v-8a7d99a5="">
-              <div class="text-cyan-400 text-xl sm:text-lg animate-bounce font-semibold hidden lg:block" data-v-8a7d99a5="">
-                &lt;/&gt;
-              </div>
-              <div class="flex flex-col items-center sm:items-start leading-tight" data-v-8a7d99a5="">
-                <span class="font-bold text-cyan-400 uppercase tracking-wide text-sm sm:text-base" data-v-8a7d99a5="">Available for online projects</span>
-                <span class="text-xs sm:text-sm bg-gradient-to-r from-teal-400 via-purple-400 to-emerald-300 text-transparent bg-clip-text" data-v-8a7d99a5=""> Ready to create something amazing </span>
-              </div>
-              <span class="hidden lg:block text-xs sm:text-sm font-medium text-green-200 border-t sm:border-t-0 sm:border-l border-cyan-500/40 mt-2 sm:mt-0 pt-1 sm:pt-0 px-2 sm:pl-3" data-v-8a7d99a5=""> Full-Stack Developer </span>
-            </div>
-          </div>
-        </div>
-        <!-- Main heading -->
-        <div class="space-y-4">
-          <h1
-            class="text-5xl md:text-7xl font-bold bg-gradient-to-r from-cyan-400 via-fuchsia-500 to-purple-500 bg-clip-text text-transparent animate-gradient-x">
-            {{ name }}
-          </h1>
-          <h2 class="text-2xl md:text-3xl text-teal-400 font-light animate-fade-in-up">
-            {{ title }}
-          </h2>
-        </div>
+      <!-- Description -->
+      <p class="hero__desc text-body-lg reveal reveal-delay-4">
+        I craft elegant, high-performance web applications — blending product thinking with clean engineering. From pixel-perfect interfaces to scalable architectures.
+      </p>
 
-        <!-- Description -->
-        <p class="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
-          {{ description }}
-        </p>
+      <!-- CTA row -->
+      <div class="hero__cta reveal reveal-delay-5">
+        <a href="#projects" class="btn-primary">
+          View my work
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+        <a href="mailto:maryamzimal24@gmail.com" class="btn-ghost">
+          Let's talk
+        </a>
+      </div>
 
-        <!-- CTA Buttons -->
-        <div class="flex flex-row sm:flex-row gap-4 justify-center items-center ">
-          <UButton
-            v-for="(link, index) in socialLinks"
-            :key="index"
-            :icon="link.icon"
-            :to="link.to"
-            :target="link.target"
-            :aria-label="link['aria-label']"
-            size="xl"
-            variant="ghost"
-            class="text-cyan-400 hover:text-fuchsia-400 hover:scale-110 transition-all duration-300 p-4 rounded-full" />
-        </div>
+      <!-- Social links -->
+      <div class="hero__social reveal reveal-delay-5">
+        <a
+          v-for="link in socialLinks"
+          :key="link.to"
+          :href="link.to"
+          :target="link.target"
+          class="hero__social-link"
+          :aria-label="link['aria-label'] || link.to">
+          <UIcon :name="link.icon" class="w-4 h-4" />
+        </a>
       </div>
     </div>
 
     <!-- Scroll indicator -->
-    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-      <UIcon name="i-heroicons-chevron-down" class="w-6 h-6 text-gray-400" />
+    <div class="hero__scroll reveal">
+      <div class="hero__scroll-line" />
+      <span class="hero__scroll-label">scroll</span>
     </div>
   </section>
 </template>
 
 <style scoped>
-/* Custom animations */
-@keyframes gradient-x {
-
-  0%,
-  100% {
-    background-size: 200% 200%;
-    background-position: left center;
-  }
-
-  50% {
-    background-size: 200% 200%;
-    background-position: right center;
-  }
-}
-
-@keyframes fade-in-up {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes float-slow {
-
-  0%,
-  100% {
-    transform: translateY(0px) translateX(0px);
-  }
-
-  33% {
-    transform: translateY(-20px) translateX(10px);
-  }
-
-  66% {
-    transform: translateY(10px) translateX(-5px);
-  }
-}
-
-@keyframes float-reverse {
-
-  0%,
-  100% {
-    transform: translateY(0px) translateX(0px) rotate(45deg);
-  }
-
-  50% {
-    transform: translateY(15px) translateX(-10px) rotate(45deg);
-  }
-}
-
-@keyframes pulse-slow {
-
-  0%,
-  100% {
-    opacity: 0.3;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: 0.8;
-    transform: scale(1.2);
-  }
-}
-
-@keyframes spin-slow {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes slide-right {
-  0% {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-
-  50% {
-    opacity: 1;
-  }
-
-  100% {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-}
-
-@keyframes slide-left {
-  0% {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-
-  50% {
-    opacity: 1;
-  }
-
-  100% {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-}
-
-@keyframes particle-float {
-  0% {
-    opacity: 0;
-    transform: translateY(100vh) translateX(0px);
-  }
-
-  10% {
-    opacity: 1;
-  }
-
-  90% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-    transform: translateY(-100px) translateX(50px);
-  }
-}
-
-@keyframes grid-move {
-  0% {
-    transform: translate(0, 0);
-  }
-
-  100% {
-    transform: translate(50px, 50px);
-  }
-}
-
-.animate-gradient-x {
-  background-size: 200% 200%;
-  animation: gradient-x 3s ease infinite;
-}
-
-.animate-fade-in-up {
-  animation: fade-in-up 1s ease-out;
-}
-
-.animate-float-slow {
-  animation: float-slow 8s ease-in-out infinite;
-}
-
-.animate-float-reverse {
-  animation: float-reverse 6s ease-in-out infinite;
-}
-
-.animate-pulse-slow {
-  animation: pulse-slow 4s ease-in-out infinite;
-}
-
-.animate-spin-slow {
-  animation: spin-slow 20s linear infinite;
-}
-
-.animate-slide-right {
-  animation: slide-right 8s ease-in-out infinite;
-}
-
-.animate-slide-left {
-  animation: slide-left 10s ease-in-out infinite;
-}
-
-/* Particles */
-.particles-container {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+/* ── Hero Shell ─────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   overflow: hidden;
+  padding-top: 100px;
+  padding-bottom: 80px;
 }
 
-.particle {
+/* ── Glow / Grid BG ─────────────────────── */
+.hero__glow {
   position: absolute;
-  background: rgba(59, 130, 246, 0.4);
-  border-radius: 50%;
-  animation: particle-float linear infinite;
+  inset: 0;
   pointer-events: none;
+  transition: background 0.1s ease;
+  z-index: 0;
 }
 
-.particle:nth-child(2n) {
-  background: hwb(271 20% 8% / 0.3);
-}
-
-.particle:nth-child(3n) {
-  background: rgba(236, 72, 153, 0.3);
-}
-
-.particle:nth-child(4n) {
-  background: rgba(34, 197, 94, 0.2);
-}
-
-.particle:nth-child(5n) {
-  background: rgba(251, 191, 36, 0.3);
-}
-
-/* Grid Background */
-.grid-bg {
-  width: 100%;
-  height: 100%;
+.hero__grid {
+  position: absolute;
+  inset: 0;
   background-image:
-    linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
-  background-size: 60px 60px;
-  animation: grid-move 25s linear infinite;
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Inner Layout ───────────────────────── */
+.hero__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* ── Availability Badge ─────────────────── */
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  padding: 7px 14px;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  border-radius: 100px;
+  background: rgba(34, 197, 94, 0.06);
+}
+
+.hero__badge-text {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  color: #86efac;
+  text-transform: uppercase;
+}
+
+/* ── Name ─────────────────────────────── */
+.hero__identity {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.hero__name {
+  font-size: clamp(64px, 10vw, 130px);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  color: var(--color-text);
+  margin: 0;
+}
+
+/* ── Role ─────────────────────────────── */
+.hero__role {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.hero__role-bar {
+  display: block;
+  width: 28px;
+  height: 1.5px;
+  background: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.hero__role-text {
+  font-size: clamp(14px, 1.5vw, 18px);
+  font-weight: 400;
+  color: var(--color-text-2);
+  letter-spacing: -0.01em;
+}
+
+/* ── Description ───────────────────────── */
+.hero__desc {
+  max-width: 560px;
+  margin: 0;
+}
+
+/* ── CTA Buttons ───────────────────────── */
+.hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 24px;
+  background: var(--color-accent);
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 8px;
+  letter-spacing: -0.01em;
+  transition: background var(--duration-fast), transform var(--duration-fast), box-shadow var(--duration-fast);
+}
+
+.btn-primary:hover {
+  background: #4f46e5;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.35);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 24px;
+  background: transparent;
+  color: var(--color-text-2);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  letter-spacing: -0.01em;
+  transition: color var(--duration-fast), border-color var(--duration-fast), background var(--duration-fast);
+}
+
+.btn-ghost:hover {
+  color: var(--color-text);
+  border-color: var(--color-border-hover);
+  background: rgba(255,255,255,0.03);
+}
+
+/* ── Social Links ───────────────────────── */
+.hero__social {
+  display: flex;
+  gap: 18px;
+  margin-top: 0;
+}
+
+.hero__social-link {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  transition: color var(--duration-fast), transform var(--duration-fast);
+}
+
+.hero__social-link:hover {
+  color: var(--color-text);
+  transform: translateY(-2px);
+}
+
+/* ── Scroll Indicator ───────────────────── */
+.hero__scroll {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+@keyframes scroll-line {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  51% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+.hero__scroll-line {
+  width: 1px;
+  height: 40px;
+  background: var(--color-text-muted);
+  animation: scroll-line 2s ease-in-out infinite;
+}
+
+.hero__scroll-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* ── Reveal Init on Mount ───────────────── */
+.hero .reveal {
+  animation: reveal-up 0.8s var(--ease-smooth) both;
+}
+
+.hero .reveal.reveal-delay-1 { animation-delay: 0.1s; }
+.hero .reveal.reveal-delay-2 { animation-delay: 0.25s; }
+.hero .reveal.reveal-delay-3 { animation-delay: 0.4s; }
+.hero .reveal.reveal-delay-4 { animation-delay: 0.55s; }
+.hero .reveal.reveal-delay-5 { animation-delay: 0.7s; }
+
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 </style>
