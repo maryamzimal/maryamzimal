@@ -20,8 +20,8 @@ const closeMenu = () => {
 <template>
   <header
     class="fixed top-2 sm:top-4 left-1/2 -translate-x-1/2 z-50
-           w-[95%] sm:w-auto bg-white/10 dark:bg-slate-800/70
-           backdrop-blur-xl border border-white/10 dark:border-white/5
+           w-[95%] sm:w-auto bg-slate-800/70
+           backdrop-blur-xl border border-white/5
            rounded-xl shadow-lg shadow-black/30
            transition-all duration-500 px-6 sm:px-8">
     <!--  Main Header Row -->
@@ -46,7 +46,6 @@ const closeMenu = () => {
 
       <!-- Right Section -->
       <div class="flex items-center gap-2">
-        <AppColorModeButton />
         <!-- Toggle Button -->
         <UButton
           :icon="isMenuOpen ? 'i-heroicons-x-mark-20-solid' : 'i-heroicons-bars-3-20-solid'"

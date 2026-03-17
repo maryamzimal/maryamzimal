@@ -10,6 +10,12 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
   ui: { content: true },
+  colorMode: {
+    preference: 'dark',
+    fallback: 'dark',
+    classSuffix: '',
+    storageKey: 'nuxt-color-mode'
+  },
   compatibilityDate: '2025-07-15',
   eslint: { config: { stylistic: true } },
 })
