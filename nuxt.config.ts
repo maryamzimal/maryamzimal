@@ -2,6 +2,7 @@
 export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
+    '@nuxtjs/mdc',
     '@nuxt/ui',
     '@nuxthub/core',
     '@nuxt/image',
@@ -18,4 +19,9 @@ export default defineNuxtConfig({
   ui: { content: true },
   compatibilityDate: '2026-04-13',
   eslint: { config: { stylistic: true } },
+  icon: {
+    serverBundle: {
+      collections: ['lucide', 'simple-icons']
+    }
+  },
 })
