@@ -3,25 +3,27 @@ const techStack = [
   {
     category: 'Frontend & UI',
     items: [
-      { name: 'Vue.js', icon: 'logos:vue' },
-      { name: 'Nuxt 3', icon: 'logos:nuxt-icon' },
-      { name: 'TypeScript', icon: 'logos:typescript-icon' },
-      { name: 'Tailwind CSS', icon: 'logos:tailwindcss-icon' },
-      { name: 'Nuxt UI', icon: 'logos:nuxt-icon' },
+
       { name: 'HTML5', icon: 'logos:html-5' },
       { name: 'CSS3', icon: 'logos:css-3' },
+      { name: 'Tailwind CSS', icon: 'logos:tailwindcss-icon' },
       { name: 'JavaScript', icon: 'logos:javascript' },
+      { name: 'Vue 3', icon: 'logos:vue' },
+      { name: 'Nuxt 4', icon: 'logos:nuxt-icon' },
+      { name: 'Nuxt UI', icon: 'logos:nuxt-icon' },
+      { name: 'NuxtHub', icon: 'logos:nuxt-icon' },
+      { name: 'TypeScript', icon: 'logos:typescript-icon' },
     ]
   },
   {
-    category: 'Backend & Tools',
+    category: 'Backend & Data',
     items: [
       { name: 'Node.js', icon: 'logos:nodejs-icon' },
       { name: 'SQLite', icon: 'logos:sqlite' },
-      { name: 'Python', icon: 'logos:python' },
-      { name: 'Git', icon: 'logos:git-icon' },
-      { name: 'VS Code', icon: 'logos:visual-studio-code' },
-      { name: 'Wrangler', icon: 'logos:cloudflare-workers-icon' },
+      { name: 'Drizzle ORM', icon: 'simple-icons:drizzle' },
+      { name: 'Cloudflare D1', icon: 'logos:cloudflare-icon' },
+
+      { name: 'Git', icon: 'logos:github-icon' },
     ]
   }
 ]
@@ -76,7 +78,6 @@ const getParticleStyle = (index: number) => {
           :key="group.category"
           class="space-y-6 animate-fade-in-up"
           :style="{ animationDelay: `${gIdx * 0.1}s` }">
-          
           <div class="flex items-center gap-4">
             <h3 class="text-xl font-bold text-teal-400 whitespace-nowrap">
               {{ group.category }}
@@ -89,16 +90,15 @@ const getParticleStyle = (index: number) => {
               v-for="(tech, tIdx) in group.items"
               :key="tech.name"
               class="group relative text-center items-center justify-center p-0 rounded-xl border border-white/5
-                     bg-white/5 backdrop-blur-md shadow-lg 
+                     bg-white/5 backdrop-blur-md shadow-lg
                      transition-all duration-300 hover:-translate-y-1.5 hover:shadow-cyan-400/10 hover:border-cyan-400/20"
               :ui="{ body: { base: 'flex flex-col items-center gap-4 p-4 sm:p-5' } }">
-              
               <div class="relative transition-transform duration-300 group-hover:scale-110">
                 <Icon :name="tech.icon" size="32" />
                 <!-- Glow Effect -->
                 <div class="absolute inset-0 bg-white/20 blur-xl opacity-0 group-hover:opacity-40 transition-opacity rounded-full" />
               </div>
-              
+
               <span class="text-xs font-semibold text-gray-300 group-hover:text-cyan-400 transition-colors">
                 {{ tech.name }}
               </span>

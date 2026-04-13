@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { NavigationMenuItem } from '@nuxt/ui'
-import { Icon } from '@iconify/vue'
 
 const isMenuOpen = ref(false)
 
@@ -30,7 +29,7 @@ const closeMenu = () => {
       <NuxtLink
         to="/"
         class="flex items-center gap-3 text-lg sm:text-xl font-semibold text-foreground whitespace-nowrap">
-        <Icon icon="lucide:code-2" class="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+        <Icon name="lucide:code-2" class="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
         <span class="font-serif tracking-wide bg-gradient-to-r from-primary via-purple-500 to-pink-500 bg-clip-text text-transparent">
           Maryam Zimal
         </span>

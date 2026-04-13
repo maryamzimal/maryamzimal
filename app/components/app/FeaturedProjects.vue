@@ -1,32 +1,32 @@
 <script setup lang="ts">
 const featuredProjects = [
   {
-    title: 'MovieFlix - Cinematic Experience',
+    title: 'MovieFlix - Full-Stack Movie Catalog',
     description:
-      'A high-performance cinematic streaming platform built with Nuxt 3. Designed for speed and immersive user experience, it features real-time movie insights and a pixel-perfect dark UI.',
+      'A full-stack movie catalog application using Nuxt 4 that demonstrates authentication, API integration, and freemium access control. Built with a focus on real-world application structure and scalable development.',
     image: '/movieflix.png',
     link: 'https://github.com/maryamzimal',
-    tags: ['Nuxt 3', 'Tailwind', 'TMDB API', 'Pinia'],
+    tags: ['Nuxt 4', 'TypeScript', 'Drizzle ORM', 'NuxtHub', 'D1'],
     features: [
-      'Real-time Movie Search & Discovery',
-      'Dynamic Category Filtering',
-      'Detailed Movie Insights & Metadata',
-      'Fully Responsive Video Overlays'
+      'Custom Auth with Email & Password',
+      'Secure nuxt-auth-utils Sessions',
+      'Freemium Access Model Control',
+      'TMDB API & Server API Layer'
     ],
     glow: 'from-cyan-500/20 to-blue-600/20'
   },
   {
-    title: 'Veloura - E-Commerce Ecosystem',
+    title: 'Veloura Dining - Premium Experience',
     description:
-      'A sophisticated multivendor marketplace designed for modern retail. Veloura bridges the gap between vendors and customers with a seamless, scalable architectural approach.',
+      'A luxury restaurant web experience focused on elegance, performance, and real usability. Built with a focus on spacing, typography, and subtle accents for a premium feel.',
     image: '/Veloura.png',
     link: 'https://github.com/maryamzimal',
-    tags: ['Vue 3', 'Tailwind', 'Drizzle ORM', 'State Mgmt'],
+    tags: ['Nuxt 3', 'Tailwind', 'Auth Flows', 'Micro-interactions'],
     features: [
-      'Multi-vendor Shop Management',
-      'Live Inventory Tracking',
-      'Secure Multi-step Checkout Flow',
-      'Interactive Product Review System'
+      'Responsive UI & Clean Components',
+      'Luxury Dark Theme Design',
+      'Complete Authentication Flows',
+      'Smart State-Based Navigation'
     ],
     glow: 'from-purple-500/20 to-fuchsia-600/20'
   },
