@@ -159,9 +159,20 @@ const getParticleStyle = index => {
   background: rgba(139, 92, 246, 0.3);
   border-radius: 50%;
   animation: particle-float linear infinite;
+  pointer-events: none;
 }
 
 .particle:nth-child(2n) { background: rgba(236, 72, 153, 0.3); }
 .particle:nth-child(3n) { background: rgba(34, 197, 94, 0.2); }
 .particle:nth-child(4n) { background: rgba(251, 191, 36, 0.3); }
+
+.grid-bg {
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: grid-move 25s linear infinite;
+}
 </style>

@@ -1,10 +1,21 @@
 <script setup lang="ts">
-// Reuse same particle animation logic as other sections
-const getParticleStyle = index => {
-  const size = Math.random() * 8 + 2
+import { ref } from 'vue'
+
+const mouse = ref({ x: 0, y: 0 })
+const handleMouseMove = (e: MouseEvent) => {
+  mouse.value = { x: e.clientX, y: e.clientY }
+}
+
+const parallax = (strength = 25) => ({
+  transform: `translate3d(${mouse.value.x / strength}px, ${mouse.value.y / strength}px, 0)`
+})
+
+// Standard particle logic for exact theme match
+const getParticleStyle = () => {
+  const size = Math.random() * 6 + 2
   const left = Math.random() * 100
   const animationDelay = Math.random() * 6
-  const animationDuration = Math.random() * 10 + 10
+  const animationDuration = Math.random() * 12 + 8
 
   return {
     width: `${size}px`,
@@ -18,98 +29,119 @@ const getParticleStyle = index => {
 
 <template>
   <section
-    class="relative overflow-hidden min-h-screen flex flex-col justify-center items-center text-center
-  bg-gradient-to-br from-purple-600/20 via-purple-500/10 to-purple-700/20 py-16 px-4 sm:px-8 md:px-12">
-    <!-- Background Elements -->
+    id="contact"
+    class="py-16 px-6 relative overflow-hidden bg-gradient-to-br from-purple-600/20 via-purple-500/10 to-purple-700/20"
+    @mousemove="handleMouseMove"
+  >
+    <!-- ✨ Background Elements -->
     <div class="absolute inset-0 z-0">
       <div class="particles-container">
         <div
-          v-for="i in 30"
+          v-for="i in 25"
           :key="i"
           class="particle"
-          :style="getParticleStyle(i)" />
+          :style="getParticleStyle()" />
       </div>
       <div class="absolute inset-0 opacity-5">
         <div class="grid-bg" />
       </div>
+      <!-- Compact Background Blobs -->
+      <div class="absolute top-1/2 left-1/3 w-64 h-64 bg-primary-500/10 rounded-full blur-[80px] animate-pulse-slow" />
+      <div class="absolute bottom-1/3 right-1/3 w-80 h-80 bg-purple-500/10 rounded-full blur-[100px] animate-float-slow" />
     </div>
 
-    <!-- Main Content -->
-    <UContainer class="relative z-10 max-w-4xl flex flex-col items-center justify-center space-y-8">
-      <!-- Heading -->
-      <h1
-        class="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight
-      text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-500 to-purple-500
-      animate-fade-in-up px-2">
-        Have an Idea?
-        <br class="sm:hidden">
-        <span
-          class="text-transparent bg-clip-text bg-gradient-to-r
-        from-cyan-400 via-fuchsia-500 to-purple-500">
-          Let's Build It
-        </span>
-      </h1>
+    <!-- 🌌 Compact Content Card -->
+    <UContainer
+      class="relative z-10 max-w-4xl"
+      :style="parallax(80)">
+      <div
+        class="group relative p-6 md:p-10 text-center ">
+        <!-- Status Badge -->
+        <div class="flex justify-center mb-6 animate-fade-in-up">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
+            <span class="relative flex h-1.5 w-1.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+              <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500" />
+            </span>
+            <span class="text-[10px] font-bold text-green-300 uppercase tracking-[0.2em]">Available</span>
+          </div>
+        </div>
 
-      <!-- Paragraph -->
-      <p
-        class="text-purple-200 text-base sm:text-lg md:text-xl opacity-90 leading-relaxed
-      max-w-2xl mx-auto px-4">
-        Got a project in mind? I craft engaging, user-focused experiences.
-      </p>
+        <!-- Heading -->
+        <h2
+          class="text-3xl md:text-5xl font-black mb-4 tracking-tight animate-fade-in-up delay-100">
+          <span class="text-white">Have an Idea?</span>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-fuchsia-500 to-purple-500 animate-gradient-x ml-3">
+            Let's Build It
+          </span>
+        </h2>
 
-      <!-- Buttons -->
-      <div class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 mt-4">
-        <UButton
-          label="Email Me"
-          icon="i-lucide-mail"
-          variant="subtle"
-          size="lg"
-          class="w-full sm:w-auto px-8 py-3 rounded-2xl font-semibold
-  bg-gradient-to-r from-purple-600 via-indigo-500 to-teal-500
-  text-white shadow-md hover:shadow-lg hover:-translate-y-0.5
-  transition-all duration-300 ease-out"
-          href="mailto:maryamzimal24@gmail.com" />
+        <!-- Paragraph -->
+        <p
+          class="text-gray-400 text-sm md:text-base max-w-xl mx-auto mb-8 leading-relaxed animate-fade-in-up delay-200">
+          Got a project in mind? I craft engaging, user-focused experiences that bring ideas to life with precision.
+        </p>
 
-        <UButton
-          label="LinkedIn"
-          icon="i-simple-icons-linkedin"
-          variant="subtle"
-          size="lg"
-          class="w-full sm:w-auto px-8 py-3 rounded-2xl font-semibold
-        text-white shadow-lg hover:shadow-xl hover:scale-105
-        transition-all duration-300 bg-slate-800"
-          href="https://www.linkedin.com/in/your-linkedin-maryam-shahid"
-          target="_blank" />
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-4 animate-fade-in-up delay-300">
+          <UButton
+            label="Email Me"
+            icon="i-lucide-mail"
+            size="lg"
+            class="w-full sm:w-auto px-8 py-3 rounded-xl font-bold bg-gradient-to-r from-cyan-500 to-blue-600 hover:scale-[1.02] transition-all duration-300 shadow-lg shadow-cyan-500/20"
+            href="mailto:maryamzimal24@gmail.com" />
+
+          <UButton
+            label="LinkedIn"
+            icon="i-simple-icons-linkedin"
+            variant="ghost"
+            size="lg"
+            class="w-full sm:w-auto px-8 py-3 rounded-xl font-bold text-gray-400 hover:text-white hover:bg-white/5 border border-white/5 transition-all duration-300"
+            href="https://www.linkedin.com/in/your-linkedin-maryam-shahid"
+            target="_blank" />
+        </div>
       </div>
     </UContainer>
   </section>
 </template>
 
 <style scoped>
-/* --- Animations reused globally --- */
+/* --- Theme Animations --- */
+@keyframes gradient-x {
+  0%, 100% { background-size: 200% 200%; background-position: left center; }
+  50% { background-size: 200% 200%; background-position: right center; }
+}
+
 @keyframes particle-float {
-  0% { opacity: 0; transform: translateY(100vh) translateX(0px); }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { opacity: 0; transform: translateY(-100px) translateX(50px); }
+  0% { opacity: 0; transform: translateY(100vh) scale(0.5); }
+  10%, 90% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-50px) scale(1); }
 }
 
 @keyframes grid-move {
   0% { transform: translate(0, 0); }
-  100% { transform: translate(50px, 50px); }
+  100% { transform: translate(40px, 40px); }
 }
 
 @keyframes fade-in-up {
-  0% { opacity: 0; transform: translateY(30px); }
+  0% { opacity: 0; transform: translateY(20px); }
   100% { opacity: 1; transform: translateY(0); }
 }
 
-/* --- Classes for reusable animations --- */
+@keyframes float-slow {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-10px, 10px); }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 0.2; }
+}
+
+/* --- Decoration --- */
 .particles-container {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+  inset: 0;
   pointer-events: none;
 }
 
@@ -118,6 +150,7 @@ const getParticleStyle = index => {
   background: rgba(139, 92, 246, 0.3);
   border-radius: 50%;
   animation: particle-float linear infinite;
+  pointer-events: none;
 }
 
 .particle:nth-child(2n) { background: rgba(236, 72, 153, 0.3); }
@@ -134,7 +167,23 @@ const getParticleStyle = index => {
   animation: grid-move 25s linear infinite;
 }
 
-.animate-fade-in-up {
-  animation: fade-in-up 1s ease-out;
+.animate-gradient-x {
+  animation: gradient-x 3s ease infinite;
 }
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 6s ease-in-out infinite;
+}
+
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
 </style>
