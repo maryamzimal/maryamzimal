@@ -17,11 +17,18 @@ export default defineNuxtConfig({
     storageKey: 'nuxt-color-mode'
   },
   ui: { content: true },
-  compatibilityDate: '2026-04-13',
   eslint: { config: { stylistic: true } },
   icon: {
     serverBundle: {
       collections: ['lucide', 'simple-icons']
     }
   },
+  compatibilityDate: "2026-04-13",
+  nitro: {
+    preset: "cloudflare_module",
+    cloudflare: {
+      deployConfig: true,
+      nodeCompat: true
+    }
+  }
 })
