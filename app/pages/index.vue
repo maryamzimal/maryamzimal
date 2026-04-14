@@ -1,10 +1,13 @@
 <template>
   <UMain>
     <AppHeroSection />
-    <AppAboutSection />
-    <AppTechStack />
-    <AppBuildSection />
-    <AppFeaturedProjects />
-    <AppGetTouch />
+    <AppUnifiedBackground>
+      <AppAboutSection />
+      <AppTechStack />
+      <AppBuildSection />
+      <AppFeaturedProjects />
+      <AppGetTouch />
+    </AppUnifiedBackground>
   </UMain>
 </template>
+

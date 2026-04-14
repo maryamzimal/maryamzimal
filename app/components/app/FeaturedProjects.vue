@@ -48,32 +48,13 @@ const featuredProjects = [
 ]
 
 // Particles logic (matches theme)
-const getParticleStyle = () => {
-  const size = Math.random() * 6 + 2
-  const left = Math.random() * 100
-  const animationDelay = Math.random() * 6
-  const animationDuration = Math.random() * 12 + 8
-  return {
-    width: `${size}px`,
-    height: `${size}px`,
-    left: `${left}%`,
-    animationDelay: `${animationDelay}s`,
-    animationDuration: `${animationDuration}s`
-  }
-}
+
 </script>
 
 <template>
-  <section id="projects" class="py-12 px-6 relative overflow-hidden bg-gradient-to-br from-purple-600/20 via-purple-500/10 to-purple-700/20 border-y border-white/5">
-    <!-- ✨ Theme Decoration -->
-    <div class="absolute inset-0 z-0">
-      <div class="particles-container">
-        <div v-for="i in 40" :key="i" class="particle" :style="getParticleStyle()" />
-      </div>
-      <div class="absolute inset-0 opacity-10">
-        <div class="grid-bg" />
-      </div>
-    </div>
+  <section id="projects" class="py-12 px-6 relative overflow-hidden border-y border-white/5">
+
+
 
     <UContainer class="relative z-10 space-y-12">
       <!-- Section Heading -->
@@ -187,52 +168,5 @@ const getParticleStyle = () => {
 </template>
 
 <style scoped>
-/* Standardized Theme Decor */
-.particles-container {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
 
-.particle {
-  position: absolute;
-  background: rgba(139, 92, 246, 0.3);
-  border-radius: 50%;
-  animation: particle-float linear infinite;
-  pointer-events: none;
-}
-
-.particle:nth-child(2n) { background: rgba(236, 72, 153, 0.3); }
-.particle:nth-child(3n) { background: rgba(34, 197, 94, 0.2); }
-.particle:nth-child(4n) { background: rgba(251, 191, 36, 0.3); }
-
-.grid-bg {
-  width: 100%;
-  height: 100%;
-  background-image:
-    linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
-  background-size: 60px 60px;
-  animation: grid-move 25s linear infinite;
-}
-
-@keyframes grid-move {
-  0% { transform: translate(0, 0); }
-  100% { transform: translate(50px, 50px); }
-}
-
-@keyframes particle-float {
-  0% { opacity: 0; transform: translateY(100vh) translateX(0px); }
-  10%, 90% { opacity: 1; }
-  100% { opacity: 0; transform: translateY(-50px) translateX(50px); }
-}
-
-@keyframes fade-in-up {
-  0% { opacity: 0; transform: translateY(30px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-.animate-fade-in-up {
-  animation: fade-in-up 1s ease-out forwards;
-}
 </style>

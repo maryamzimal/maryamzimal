@@ -39,42 +39,14 @@ const services = [
 ]
 
 // Particle styles
-const getParticleStyle = index => {
-  const size = Math.random() * 8 + 2
-  const left = Math.random() * 100
-  const animationDelay = Math.random() * 6
-  const animationDuration = Math.random() * 10 + 10
 
-  return {
-    width: `${size}px`,
-    height: `${size}px`,
-    left: `${left}%`,
-    animationDelay: `${animationDelay}s`,
-    animationDuration: `${animationDuration}s`
-  }
-}
 </script>
 
 <template>
   <section
-    class="py-20 px-6 relative overflow-hidden min-h-screen
-           bg-gradient-to-br from-purple-600/20 via-purple-500/10 to-purple-700/20">
-    <!-- Particles & Grid -->
-    <div class="absolute inset-0 z-0">
-      <!-- 🪩 Particles (animated globally) -->
-      <div class="particles-container">
-        <div
-          v-for="i in 35"
-          :key="i"
-          class="particle"
-          :style="getParticleStyle(i)" />
-      </div>
+    class="py-20 px-6 relative overflow-hidden min-h-screen">
 
-      <!-- 🧊 Grid background -->
-      <div class="absolute inset-0 opacity-5">
-        <div class="grid-bg" />
-      </div>
-    </div>
+
 
     <UContainer class="relative z-10 space-y-16">
       <!-- Header -->
@@ -138,41 +110,5 @@ const getParticleStyle = index => {
 </template>
 
 <style scoped>
-/* Animations */
-@keyframes particle-float {
-  0% { opacity: 0; transform: translateY(100vh) translateX(0px); }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { opacity: 0; transform: translateY(-100px) translateX(50px); }
-}
 
-.particles-container {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.particle {
-  position: absolute;
-  background: rgba(139, 92, 246, 0.3);
-  border-radius: 50%;
-  animation: particle-float linear infinite;
-  pointer-events: none;
-}
-
-.particle:nth-child(2n) { background: rgba(236, 72, 153, 0.3); }
-.particle:nth-child(3n) { background: rgba(34, 197, 94, 0.2); }
-.particle:nth-child(4n) { background: rgba(251, 191, 36, 0.3); }
-
-.grid-bg {
-  width: 100%;
-  height: 100%;
-  background-image:
-    linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
-  background-size: 60px 60px;
-  animation: grid-move 25s linear infinite;
-}
 </style>

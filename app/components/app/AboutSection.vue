@@ -49,36 +49,16 @@ const experience = [
 
 const activeTab = ref('about')
 
-const getParticleStyle = () => {
-  const size = Math.random() * 8 + 2
-  const left = Math.random() * 100
-  const animationDelay = Math.random() * 6
-  const animationDuration = Math.random() * 10 + 10
-  return {
-    width: `${size}px`,
-    height: `${size}px`,
-    left: `${left}%`,
-    animationDelay: `${animationDelay}s`,
-    animationDuration: `${animationDuration}s`,
-  }
-}
+
 </script>
 
 <template>
   <section
     id="about"
-    class="relative py-16 px-6 sm:px-10 overflow-hidden
-           bg-gradient-to-br from-purple-600/20 via-purple-500/10 to-purple-700/20"
+    class="relative py-16 px-6 sm:px-10 overflow-hidden"
     @mousemove="handleMouseMove">
-    <!-- Unified Background -->
-    <div class="absolute inset-0 z-0">
-      <div class="particles-container">
-        <div v-for="i in 35" :key="i" class="particle" :style="getParticleStyle()" />
-      </div>
-      <div class="absolute inset-0 opacity-5">
-        <div class="grid-bg" />
-      </div>
-    </div>
+
+
 
     <UContainer class="relative z-10 max-w-4xl space-y-8">
       <!-- Standardized Header (Matching TechStack) -->
@@ -231,36 +211,6 @@ const getParticleStyle = () => {
 </template>
 
 <style scoped>
-@keyframes particle-float {
-  0% { opacity: 0; transform: translateY(100vh) translateX(0px); }
-  10%, 90% { opacity: 1; }
-  100% { opacity: 0; transform: translateY(-100px) translateX(50px); }
-}
-
-.particles-container {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.particle {
-  position: absolute;
-  background: rgba(139, 92, 246, 0.3);
-  border-radius: 50%;
-  animation: particle-float linear infinite;
-}
-
-.grid-bg {
-  width: 100%;
-  height: 100%;
-  background-image:
-    linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
-  background-size: 60px 60px;
-}
-
 @keyframes fade-in-up {
   0% { opacity: 0; transform: translateY(20px); }
   100% { opacity: 1; transform: translateY(0); }

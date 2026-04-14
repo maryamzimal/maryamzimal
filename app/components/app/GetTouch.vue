@@ -11,41 +11,17 @@ const parallax = (strength = 25) => ({
 })
 
 // Standard particle logic for exact theme match
-const getParticleStyle = () => {
-  const size = Math.random() * 6 + 2
-  const left = Math.random() * 100
-  const animationDelay = Math.random() * 6
-  const animationDuration = Math.random() * 12 + 8
 
-  return {
-    width: `${size}px`,
-    height: `${size}px`,
-    left: `${left}%`,
-    animationDelay: `${animationDelay}s`,
-    animationDuration: `${animationDuration}s`
-  }
-}
 </script>
 
 <template>
   <section
     id="contact"
-    class="py-16 px-6 relative overflow-hidden bg-gradient-to-br from-purple-600/20 via-purple-500/10 to-purple-700/20"
+    class="py-16 px-6 relative overflow-hidden"
     @mousemove="handleMouseMove"
   >
-    <!-- ✨ Background Elements -->
-    <div class="absolute inset-0 z-0">
-      <div class="particles-container">
-        <div
-          v-for="i in 25"
-          :key="i"
-          class="particle"
-          :style="getParticleStyle()" />
-      </div>
-      <div class="absolute inset-0 opacity-5">
-        <div class="grid-bg" />
-      </div>
-      <!-- Compact Background Blobs -->
+    <!-- Compact Background Blobs -->
+    <div class="absolute inset-0 z-0 pointer-events-none">
       <div class="absolute top-1/2 left-1/3 w-64 h-64 bg-primary-500/10 rounded-full blur-[80px] animate-pulse-slow" />
       <div class="absolute bottom-1/3 right-1/3 w-80 h-80 bg-purple-500/10 rounded-full blur-[100px] animate-float-slow" />
     </div>
@@ -112,16 +88,7 @@ const getParticleStyle = () => {
   50% { background-size: 200% 200%; background-position: right center; }
 }
 
-@keyframes particle-float {
-  0% { opacity: 0; transform: translateY(100vh) scale(0.5); }
-  10%, 90% { opacity: 1; }
-  100% { opacity: 0; transform: translateY(-50px) scale(1); }
-}
 
-@keyframes grid-move {
-  0% { transform: translate(0, 0); }
-  100% { transform: translate(40px, 40px); }
-}
 
 @keyframes fade-in-up {
   0% { opacity: 0; transform: translateY(20px); }
@@ -139,33 +106,7 @@ const getParticleStyle = () => {
 }
 
 /* --- Decoration --- */
-.particles-container {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
 
-.particle {
-  position: absolute;
-  background: rgba(139, 92, 246, 0.3);
-  border-radius: 50%;
-  animation: particle-float linear infinite;
-  pointer-events: none;
-}
-
-.particle:nth-child(2n) { background: rgba(236, 72, 153, 0.3); }
-.particle:nth-child(3n) { background: rgba(34, 197, 94, 0.2); }
-.particle:nth-child(4n) { background: rgba(251, 191, 36, 0.3); }
-
-.grid-bg {
-  width: 100%;
-  height: 100%;
-  background-image:
-    linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
-  background-size: 60px 60px;
-  animation: grid-move 25s linear infinite;
-}
 
 .animate-gradient-x {
   animation: gradient-x 3s ease infinite;
