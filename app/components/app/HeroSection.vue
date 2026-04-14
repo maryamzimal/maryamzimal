@@ -93,7 +93,7 @@ const getParticleStyle = index => {
         </div>
 
         <!-- Description -->
-        <p class="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+        <p class="text-xl text-gray-200 max-w-2xl mx-auto leading-relaxed">
           {{ description }}
         </p>
 
