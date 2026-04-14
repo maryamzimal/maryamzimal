@@ -5,17 +5,11 @@ const handleMouseMove = (e: MouseEvent) => {
   mouse.value = { x: e.clientX, y: e.clientY }
 }
 
-const highlights = [
-  { title: 'Full-Stack Nuxt', icon: 'i-lucide-layers' },
-  { title: 'Cloud Architecture', icon: 'i-lucide-cpu' },
-  { title: 'Machine Learning', icon: 'i-lucide-brain-circuit' }
-]
-
 // --- Background & Journey Content ---
 const education = [
   {
     institution: 'Government College University, Faisalabad',
-    degree: "Bachelor's degree, Computer Science",
+    degree: 'Bachelor\'s degree, Computer Science',
     duration: 'Jan 2020 - Nov 2024',
     grade: 'CGPA 3.63 / 4.00',
     details: 'Developed a Property Dealing Website as the Final Year Project. Focused on software engineering, web development, and data-driven applications.'
@@ -30,6 +24,13 @@ const education = [
 ]
 
 const experience = [
+  {
+    company: 'E-Commerce By Experts',
+    role: 'Full-Stack Web Developer (Vue & Nuxt)',
+    duration: 'May 2025 - Oct 2025',
+    location: 'On-site',
+    skills: ['Vue 3', 'Nuxt.js', 'Frontend Architecture', 'Full-Stack Development']
+  },
   {
     company: 'Arch Technologies',
     role: 'Data Scientist (Internship)',
@@ -66,10 +67,9 @@ const getParticleStyle = () => {
 <template>
   <section
     id="about"
-    class="relative py-16 px-6 sm:px-10 overflow-hidden 
+    class="relative py-16 px-6 sm:px-10 overflow-hidden
            bg-gradient-to-br from-purple-600/20 via-purple-500/10 to-purple-700/20"
     @mousemove="handleMouseMove">
-    
     <!-- Unified Background -->
     <div class="absolute inset-0 z-0">
       <div class="particles-container">
@@ -81,7 +81,6 @@ const getParticleStyle = () => {
     </div>
 
     <UContainer class="relative z-10 max-w-4xl space-y-8">
-      
       <!-- Standardized Header (Matching TechStack) -->
       <div class="flex flex-col gap-1.5 mb-11 text-center items-center justify-center animate-fade-in-up">
         <h1 class="text-4xl sm:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 via-teal-400 to-pink-500 tracking-tight">
@@ -96,33 +95,32 @@ const getParticleStyle = () => {
         <div class="flex items-center gap-2 p-1.5 bg-[#0a101f] border border-[#10b981]/20 rounded-xl shadow-[0_0_20px_rgba(16,185,129,0.05)] backdrop-blur-xl max-w-full overflow-x-auto no-scrollbar">
           <!-- About Tab -->
           <button
-            @click="activeTab = 'about'"
             class="flex items-center gap-2 px-6 py-2.5 rounded-lg transition-all duration-300 group whitespace-nowrap"
-            :class="activeTab === 'about' ? 'bg-[#10b981] text-white shadow-[0_0_15px_rgba(16,185,129,0.3)]' : 'text-gray-400 hover:text-emerald-400 hover:bg-emerald-400/5'">
+            :class="activeTab === 'about' ? 'bg-[#10b981] text-white shadow-[0_0_15px_rgba(16,185,129,0.3)]' : 'text-gray-400 hover:text-emerald-400 hover:bg-emerald-400/5'"
+            @click="activeTab = 'about'">
             <UIcon name="i-lucide-user" class="w-5 h-5 transition-transform group-hover:scale-110" />
             <span class="font-bold tracking-widest text-xs sm:text-sm uppercase">About</span>
           </button>
 
           <!-- Experience Tab -->
           <button
-            @click="activeTab = 'experience'"
             class="flex items-center gap-2 px-6 py-2.5 rounded-lg transition-all duration-300 group whitespace-nowrap"
-            :class="activeTab === 'experience' ? 'bg-[#10b981] text-white shadow-[0_0_15px_rgba(16,185,129,0.3)]' : 'text-gray-400 hover:text-emerald-400 hover:bg-emerald-400/5'">
+            :class="activeTab === 'experience' ? 'bg-[#10b981] text-white shadow-[0_0_15px_rgba(16,185,129,0.3)]' : 'text-gray-400 hover:text-emerald-400 hover:bg-emerald-400/5'"
+            @click="activeTab = 'experience'">
             <UIcon name="i-lucide-briefcase" class="w-5 h-5 transition-transform group-hover:scale-110" />
             <span class="font-bold tracking-widest text-xs sm:text-sm uppercase">Experience</span>
           </button>
 
           <!-- Education Tab -->
           <button
-            @click="activeTab = 'education'"
             class="flex items-center gap-2 px-6 py-2.5 rounded-lg transition-all duration-300 group whitespace-nowrap"
-            :class="activeTab === 'education' ? 'bg-[#10b981] text-white shadow-[0_0_15px_rgba(16,185,129,0.3)]' : 'text-gray-400 hover:text-emerald-400 hover:bg-emerald-400/5'">
+            :class="activeTab === 'education' ? 'bg-[#10b981] text-white shadow-[0_0_15px_rgba(16,185,129,0.3)]' : 'text-gray-400 hover:text-emerald-400 hover:bg-emerald-400/5'"
+            @click="activeTab = 'education'">
             <UIcon name="i-lucide-graduation-cap" class="w-5 h-5 transition-transform group-hover:scale-110" />
             <span class="font-bold tracking-widest text-xs sm:text-sm uppercase">Education</span>
           </button>
         </div>
       </div>
-
 
       <!-- Unified Content Area -->
       <div class="relative min-h-[350px]">
@@ -134,28 +132,18 @@ const getParticleStyle = () => {
           leave-active-class="transition duration-300 ease-in"
           leave-from-class="opacity-100 translate-y-0"
           leave-to-class="opacity-0 -translate-y-4">
-          
           <!-- Tab 1: About Content -->
           <div v-if="activeTab === 'about'" key="about" class="text-center space-y-6">
             <div class="max-w-3xl mx-auto">
-              <p class="text-purple-100/90 text-lg sm:text-2xl leading-relaxed font-light">
-                I am a <span class="text-teal-400 font-bold">Computer Science Graduate</span> dedicated to crafting high-performance web applications. 
-                Specializing in <span class="text-cyan-400 font-semibold italic">Vue 3 and Nuxt.js</span>, I bridge the gap between frontend elegance and 
-                backend robustness. Currently exploring <span class="text-pink-400 font-semibold">Machine Learning</span> to build more 
-                intelligent, data-driven digital experiences.
+              <p class="text-purple-100/90 text-base sm:text-xl leading-relaxed font-light">
+                My journey began with <span class="text-teal-400 font-bold">HTML, CSS, Tailwind, and JavaScript</span>, 
+                and has grown into working with <span class="text-cyan-400 font-semibold italic">Vue.js, Nuxt.js</span>, 
+                and modern tools like <span class="bg-gradient-to-r from-teal-400 to-emerald-400 bg-clip-text text-transparent font-bold tracking-wide">Drizzle ORM</span>. 
+                I have experience in cloud deployment and building end-to-end web solutions. For my Final Year Project, I developed a 
+                <span class="text-fuchsia-400 font-medium italic underline decoration-fuchsia-400/30 underline-offset-8">Property Dealing Website</span>, 
+                strengthening my frontend and backend skills. I’m passionate about continuous learning and currently exploring 
+                <span class="text-pink-400 font-semibold">Machine Learning</span> to build smarter, more impactful web applications.
               </p>
-            </div>
-
-            <div class="flex flex-wrap justify-center gap-4 sm:gap-6">
-              <div
-                v-for="item in highlights"
-                :key="item.title"
-                class="flex items-center gap-3 px-6 py-4 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-teal-400/30 transition-all duration-300 group">
-                <div class="p-2 rounded-lg bg-teal-400/10 text-teal-400 group-hover:scale-110 transition-transform">
-                  <UIcon :name="item.icon" class="w-6 h-6" />
-                </div>
-                <span class="text-sm font-bold text-white uppercase tracking-wider">{{ item.title }}</span>
-              </div>
             </div>
 
             <div class="flex justify-center gap-4 pt-2">
@@ -181,8 +169,12 @@ const getParticleStyle = () => {
               :ui="{ body: { base: 'p-6 sm:p-8 text-left' } }">
               <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
                 <div>
-                  <h4 class="text-2xl font-bold text-white group-hover:text-emerald-400 transition-colors">{{ job.company }}</h4>
-                  <p class="text-emerald-400/80 font-medium text-lg">{{ job.role }}</p>
+                  <h4 class="text-2xl font-bold text-white group-hover:text-emerald-400 transition-colors">
+                    {{ job.company }}
+                  </h4>
+                  <p class="text-emerald-400/80 font-medium text-lg">
+                    {{ job.role }}
+                  </p>
                 </div>
                 <span class="text-xs font-bold px-4 py-1.5 rounded-full bg-emerald-400/10 text-emerald-400 border border-emerald-400/20 tracking-widest uppercase">
                   {{ job.duration }}
@@ -212,15 +204,19 @@ const getParticleStyle = () => {
               :ui="{ body: { base: 'p-6 sm:p-8 text-left' } }">
               <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
                 <div>
-                  <h4 class="text-2xl font-bold text-white group-hover:text-emerald-400 transition-colors">{{ edu.institution }}</h4>
-                  <p class="text-emerald-400/80 font-medium text-lg">{{ edu.degree }}</p>
+                  <h4 class="text-2xl font-bold text-white group-hover:text-emerald-400 transition-colors">
+                    {{ edu.institution }}
+                  </h4>
+                  <p class="text-emerald-400/80 font-medium text-lg">
+                    {{ edu.degree }}
+                  </p>
                 </div>
                 <span class="text-xs font-bold px-4 py-1.5 rounded-full bg-emerald-400/10 text-emerald-400 border border-emerald-400/20 tracking-widest uppercase">
                   {{ edu.duration }}
                 </span>
               </div>
               <div class="mt-4 p-5 rounded-xl bg-white/5 border border-white/5 space-y-3 font-light text-purple-200/70">
-                 <p class="text-emerald-400 font-bold flex items-center gap-2">
+                <p class="text-emerald-400 font-bold flex items-center gap-2">
                   <UIcon name="i-lucide-star" class="w-4 h-4" />
                   {{ edu.grade }}
                 </p>
@@ -230,7 +226,6 @@ const getParticleStyle = () => {
           </div>
         </Transition>
       </div>
-
     </UContainer>
   </section>
 </template>

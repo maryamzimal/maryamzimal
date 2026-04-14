@@ -12,7 +12,7 @@ defineProps({
   },
   description: {
     type: String,
-    default: 'Crafting elegant, high-performance, and scalable web applications using modern frameworks — blending creativity with clean, optimized code.'
+    default: 'As a Computer Science Graduate specializing in Vue 3 & Nuxt.js, I craft elegant, high-performance web applications by blending creative design with clean, scalable, and optimized code.'
   }
 })
 
