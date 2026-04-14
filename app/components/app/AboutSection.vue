@@ -71,33 +71,33 @@ const activeTab = ref('about')
         </h2>
       </div>
       <!-- Triple-Tab Switcher (Responsive glassmorphism style) -->
-      <div class="flex justify-center items-center animate-fade-in-up delay-200 pb-4 w-full px-2 sm:px-0">
-        <div class="flex items-center w-full sm:w-auto gap-1 sm:gap-2 p-1.5 bg-white/5 border border-white/10 rounded-2xl shadow-lg backdrop-blur-xl shrink-0">
+      <div class="flex justify-center items-center animate-fade-in-up delay-200 pb-6 w-full px-1 sm:px-0 mx-auto">
+        <div class="grid grid-cols-3 sm:flex sm:flex-row items-stretch sm:items-center w-full sm:w-auto gap-1 sm:gap-2 p-1.5 bg-white/5 border border-white/10 rounded-2xl shadow-lg backdrop-blur-xl">
           <!-- About Tab -->
           <button
-            class="flex flex-1 sm:flex-none justify-center items-center gap-1.5 sm:gap-2 px-2 sm:px-6 py-2 sm:py-2.5 rounded-xl transition-all duration-300 group"
+            class="flex flex-col sm:flex-row justify-center items-center gap-1 sm:gap-2 px-1 sm:px-6 py-2.5 sm:py-2.5 rounded-xl transition-all duration-300 group"
             :class="activeTab === 'about' ? 'bg-gradient-to-r from-emerald-500 to-teal-400 text-white shadow-[0_0_20px_rgba(16,185,129,0.3)]' : 'text-gray-400 hover:text-white hover:bg-white/5'"
             @click="activeTab = 'about'">
-            <UIcon name="i-lucide-user" class="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:scale-110" />
-            <span class="font-bold tracking-wider text-[11px] sm:text-sm uppercase whitespace-nowrap">About</span>
+            <UIcon name="i-lucide-user" class="w-5 h-5 sm:w-5 sm:h-5 transition-transform group-hover:scale-110" />
+            <span class="font-bold tracking-wider text-[10px] sm:text-sm uppercase whitespace-nowrap mt-1 sm:mt-0">About</span>
           </button>
 
           <!-- Experience Tab -->
           <button
-            class="flex flex-1 sm:flex-none justify-center items-center gap-1.5 sm:gap-2 px-2 sm:px-6 py-2 sm:py-2.5 rounded-xl transition-all duration-300 group"
+            class="flex flex-col sm:flex-row justify-center items-center gap-1 sm:gap-2 px-1 sm:px-6 py-2.5 sm:py-2.5 rounded-xl transition-all duration-300 group"
             :class="activeTab === 'experience' ? 'bg-gradient-to-r from-emerald-500 to-teal-400 text-white shadow-[0_0_20px_rgba(16,185,129,0.3)]' : 'text-gray-400 hover:text-white hover:bg-white/5'"
             @click="activeTab = 'experience'">
-            <UIcon name="i-lucide-briefcase" class="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:scale-110" />
-            <span class="font-bold tracking-wider text-[11px] sm:text-sm uppercase whitespace-nowrap">Experience</span>
+            <UIcon name="i-lucide-briefcase" class="w-5 h-5 sm:w-5 sm:h-5 transition-transform group-hover:scale-110" />
+            <span class="font-bold tracking-wider text-[10px] sm:text-sm uppercase whitespace-nowrap mt-1 sm:mt-0">Experience</span>
           </button>
 
           <!-- Education Tab -->
           <button
-            class="flex flex-1 sm:flex-none justify-center items-center gap-1.5 sm:gap-2 px-2 sm:px-6 py-2 sm:py-2.5 rounded-xl transition-all duration-300 group"
+            class="flex flex-col sm:flex-row justify-center items-center gap-1 sm:gap-2 px-1 sm:px-6 py-2.5 sm:py-2.5 rounded-xl transition-all duration-300 group"
             :class="activeTab === 'education' ? 'bg-gradient-to-r from-emerald-500 to-teal-400 text-white shadow-[0_0_20px_rgba(16,185,129,0.3)]' : 'text-gray-400 hover:text-white hover:bg-white/5'"
             @click="activeTab = 'education'">
-            <UIcon name="i-lucide-graduation-cap" class="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:scale-110" />
-            <span class="font-bold tracking-wider text-[11px] sm:text-sm uppercase whitespace-nowrap">Education</span>
+            <UIcon name="i-lucide-graduation-cap" class="w-5 h-5 sm:w-5 sm:h-5 transition-transform group-hover:scale-110" />
+            <span class="font-bold tracking-wider text-[10px] sm:text-sm uppercase whitespace-nowrap mt-1 sm:mt-0">Education</span>
           </button>
         </div>
       </div>
@@ -114,39 +114,43 @@ const activeTab = ref('about')
           leave-to-class="opacity-0 -translate-y-4">
           <!-- Tab 1: About Content -->
           <div v-if="activeTab === 'about'" key="about" class="text-center space-y-6">
-            <div class="max-w-3xl mx-auto">
-              <p class="text-purple-100/90 text-base sm:text-xl leading-relaxed font-light">
+            <div class="max-w-2xl mx-auto">
+              <p class="text-purple-100/90 text-sm sm:text-lg leading-relaxed font-light mb-5">
                 My journey began with <span class="text-teal-400 font-bold">HTML, CSS, Tailwind, and JavaScript</span>, 
                 and has grown into working with <span class="text-cyan-400 font-semibold italic">Vue.js, Nuxt.js</span>, 
                 and modern tools like <span class="bg-gradient-to-r from-teal-400 to-emerald-400 bg-clip-text text-transparent font-bold tracking-wide">Drizzle ORM</span>. 
+              </p>
+              <p class="text-purple-100/90 text-sm sm:text-lg leading-relaxed font-light mb-5">
                 I have experience in cloud deployment and building end-to-end web solutions. For my Final Year Project, I developed a 
                 <span class="text-fuchsia-400 font-medium italic underline decoration-fuchsia-400/30 underline-offset-8">Property Dealing Website</span>, 
-                strengthening my frontend and backend skills. I am actively focused on creating modern web experiences, while simultaneously exploring 
+                strengthening my frontend and backend skills. 
+              </p>
+              <p class="text-purple-100/90 text-sm sm:text-lg leading-relaxed font-light">
+                I am actively focused on creating modern web experiences, while simultaneously exploring 
                 <span class="text-pink-400 font-semibold">Machine Learning</span> alongside my web development journey to build even smarter, more impactful applications.
               </p>
             </div>
 
-            <div class="flex justify-center gap-4 pt-2">
+            <div class="flex justify-center gap-4 pt-4 max-w-2xl mx-auto">
               <UButton
                 label="Get Resume"
                 size="lg"
-                class="rounded-full px-8 bg-teal-500 text-white font-bold" />
+                class="rounded-full px-8 bg-teal-500 hover:bg-teal-400 text-white font-bold transition-all" />
               <UButton
                 label="Contact Me"
                 size="lg"
                 variant="outline"
-                class="rounded-full px-8 border-white/20 text-white"
+                class="rounded-full px-8 border-white/20 hover:bg-white/5 text-white transition-all"
                 to="mailto:maryamzimal24@gmail.com" />
             </div>
           </div>
 
           <!-- Tab 2: Experience Content -->
           <div v-else-if="activeTab === 'experience'" key="experience" class="space-y-6">
-            <UCard
+            <div
               v-for="(job, index) in experience"
               :key="index"
-              class="group bg-white/5 backdrop-blur-md border-white/10 hover:border-emerald-400/30 transition-all duration-300"
-              :ui="{ body: { base: 'p-6 sm:p-8 text-left' } }">
+              class="max-w-2xl mx-auto group bg-white/5 p-6 sm:p-8 rounded-2xl border border-white/10 backdrop-blur-md shadow-lg text-left hover:border-emerald-400/30 transition-all duration-300">
               <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
                 <div>
                   <h4 class="text-2xl font-bold text-white group-hover:text-emerald-400 transition-colors">
@@ -156,15 +160,15 @@ const activeTab = ref('about')
                     {{ job.role }}
                   </p>
                 </div>
-                <span class="text-xs font-bold px-4 py-1.5 rounded-full bg-emerald-400/10 text-emerald-400 border border-emerald-400/20 tracking-widest uppercase">
+                <span class="text-xs font-bold px-4 py-1.5 rounded-full bg-emerald-400/10 text-emerald-400 border border-emerald-400/20 tracking-widest uppercase shrink-0">
                   {{ job.duration }}
                 </span>
               </div>
-              <p class="text-sm text-purple-200/60 flex items-center gap-2 mt-2">
+              <p class="text-sm text-purple-200/60 flex items-center gap-2 mt-3">
                 <UIcon name="i-lucide-map-pin" class="w-4 h-4" />
                 {{ job.location }}
               </p>
-              <div class="flex flex-wrap gap-2 mt-4">
+              <div class="flex flex-wrap gap-2 mt-5">
                 <span
                   v-for="skill in job.skills"
                   :key="skill"
@@ -172,16 +176,15 @@ const activeTab = ref('about')
                   {{ skill }}
                 </span>
               </div>
-            </UCard>
+            </div>
           </div>
 
           <!-- Tab 3: Education Content -->
           <div v-else-if="activeTab === 'education'" key="education" class="space-y-6">
-            <UCard
+            <div
               v-for="(edu, index) in education"
               :key="index"
-              class="group bg-white/5 backdrop-blur-md border-white/10 hover:border-emerald-400/30 transition-all duration-300"
-              :ui="{ body: { base: 'p-6 sm:p-8 text-left' } }">
+              class="max-w-2xl mx-auto group bg-white/5 p-6 sm:p-8 rounded-2xl border border-white/10 backdrop-blur-md shadow-lg text-left hover:border-emerald-400/30 transition-all duration-300">
               <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
                 <div>
                   <h4 class="text-2xl font-bold text-white group-hover:text-emerald-400 transition-colors">
@@ -191,18 +194,18 @@ const activeTab = ref('about')
                     {{ edu.degree }}
                   </p>
                 </div>
-                <span class="text-xs font-bold px-4 py-1.5 rounded-full bg-emerald-400/10 text-emerald-400 border border-emerald-400/20 tracking-widest uppercase">
+                <span class="text-xs font-bold px-4 py-1.5 rounded-full bg-emerald-400/10 text-emerald-400 border border-emerald-400/20 tracking-widest uppercase shrink-0">
                   {{ edu.duration }}
                 </span>
               </div>
-              <div class="mt-4 p-5 rounded-xl bg-white/5 border border-white/5 space-y-3 font-light text-purple-200/70">
+              <div class="mt-5 p-5 rounded-xl bg-white/5 border border-white/5 space-y-3 font-light text-purple-200/70">
                 <p class="text-emerald-400 font-bold flex items-center gap-2">
                   <UIcon name="i-lucide-star" class="w-4 h-4" />
                   {{ edu.grade }}
                 </p>
                 <p>{{ edu.details }}</p>
               </div>
-            </UCard>
+            </div>
           </div>
         </Transition>
       </div>
