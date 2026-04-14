@@ -34,7 +34,7 @@ const techStack = [
 
 <template>
   <section
-    class="py-16 px-6 relative overflow-hidden">
+    class="pt-16 pb-8 px-6 relative overflow-hidden">
 
 
 

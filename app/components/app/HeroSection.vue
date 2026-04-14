@@ -51,8 +51,7 @@ const getParticleStyle = index => {
       <!-- Animated lines -->
       <div
         class="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary-500/30 to-transparent animate-slide-right" />
-      <div
-        class="absolute bottom-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-500/30 to-transparent animate-slide-left" />
+
 
       <!-- Floating particles -->
       <div class="particles-container">

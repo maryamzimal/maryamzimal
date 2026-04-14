@@ -44,7 +44,7 @@ const services = [
 
 <template>
   <section
-    class="py-20 px-6 relative overflow-hidden min-h-screen">
+    class="pt-8 pb-20 px-6 relative overflow-hidden">
 
 
 

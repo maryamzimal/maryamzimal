@@ -4,10 +4,13 @@
     <AppUnifiedBackground>
       <AppAboutSection />
       <AppTechStack />
-      <AppBuildSection />
-      <AppFeaturedProjects />
-      <AppGetTouch />
+      <AppParticlesWrapper>
+        <AppBuildSection />
+        <AppFeaturedProjects />
+        <AppGetTouch />
+      </AppParticlesWrapper>
     </AppUnifiedBackground>
   </UMain>
 </template>
+
 
