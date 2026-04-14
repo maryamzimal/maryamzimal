@@ -121,8 +121,8 @@ const activeTab = ref('about')
                 and modern tools like <span class="bg-gradient-to-r from-teal-400 to-emerald-400 bg-clip-text text-transparent font-bold tracking-wide">Drizzle ORM</span>. 
                 I have experience in cloud deployment and building end-to-end web solutions. For my Final Year Project, I developed a 
                 <span class="text-fuchsia-400 font-medium italic underline decoration-fuchsia-400/30 underline-offset-8">Property Dealing Website</span>, 
-                strengthening my frontend and backend skills. I’m passionate about continuous learning and currently exploring 
-                <span class="text-pink-400 font-semibold">Machine Learning</span> to build smarter, more impactful web applications.
+                strengthening my frontend and backend skills. I am actively focused on creating modern web experiences, while simultaneously exploring 
+                <span class="text-pink-400 font-semibold">Machine Learning</span> alongside my web development journey to build even smarter, more impactful applications.
               </p>
             </div>
 

@@ -4,8 +4,8 @@
     <AppUnifiedBackground>
       <AppAboutSection />
       <AppTechStack />
+      <AppBuildSection />
       <AppParticlesWrapper>
-        <AppBuildSection />
         <AppFeaturedProjects />
         <AppGetTouch />
       </AppParticlesWrapper>
