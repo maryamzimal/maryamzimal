@@ -156,7 +156,7 @@ const getParticleStyle = () => {
                 size="lg"
                 variant="outline"
                 class="rounded-full px-8 border-white/20 text-white"
-                to="#contact" />
+                to="mailto:maryamzimal24@gmail.com" />
             </div>
           </div>
 
