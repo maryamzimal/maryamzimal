@@ -70,34 +70,34 @@ const activeTab = ref('about')
           A deep dive into my technical identity and professional journey
         </h2>
       </div>
-      <!-- Triple-Tab Switcher (Module Style) -->
-      <div class="flex justify-center items-center animate-fade-in-up delay-200 pb-4">
-        <div class="flex items-center gap-2 p-1.5 bg-[#0a101f] border border-[#10b981]/20 rounded-xl shadow-[0_0_20px_rgba(16,185,129,0.05)] backdrop-blur-xl max-w-full overflow-x-auto no-scrollbar">
+      <!-- Triple-Tab Switcher (Responsive glassmorphism style) -->
+      <div class="flex justify-center items-center animate-fade-in-up delay-200 pb-4 w-full px-2 sm:px-0">
+        <div class="flex items-center w-full sm:w-auto gap-1 sm:gap-2 p-1.5 bg-white/5 border border-white/10 rounded-2xl shadow-lg backdrop-blur-xl shrink-0">
           <!-- About Tab -->
           <button
-            class="flex items-center gap-2 px-6 py-2.5 rounded-lg transition-all duration-300 group whitespace-nowrap"
-            :class="activeTab === 'about' ? 'bg-[#10b981] text-white shadow-[0_0_15px_rgba(16,185,129,0.3)]' : 'text-gray-400 hover:text-emerald-400 hover:bg-emerald-400/5'"
+            class="flex flex-1 sm:flex-none justify-center items-center gap-1.5 sm:gap-2 px-2 sm:px-6 py-2 sm:py-2.5 rounded-xl transition-all duration-300 group"
+            :class="activeTab === 'about' ? 'bg-gradient-to-r from-emerald-500 to-teal-400 text-white shadow-[0_0_20px_rgba(16,185,129,0.3)]' : 'text-gray-400 hover:text-white hover:bg-white/5'"
             @click="activeTab = 'about'">
-            <UIcon name="i-lucide-user" class="w-5 h-5 transition-transform group-hover:scale-110" />
-            <span class="font-bold tracking-widest text-xs sm:text-sm uppercase">About</span>
+            <UIcon name="i-lucide-user" class="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:scale-110" />
+            <span class="font-bold tracking-wider text-[11px] sm:text-sm uppercase whitespace-nowrap">About</span>
           </button>
 
           <!-- Experience Tab -->
           <button
-            class="flex items-center gap-2 px-6 py-2.5 rounded-lg transition-all duration-300 group whitespace-nowrap"
-            :class="activeTab === 'experience' ? 'bg-[#10b981] text-white shadow-[0_0_15px_rgba(16,185,129,0.3)]' : 'text-gray-400 hover:text-emerald-400 hover:bg-emerald-400/5'"
+            class="flex flex-1 sm:flex-none justify-center items-center gap-1.5 sm:gap-2 px-2 sm:px-6 py-2 sm:py-2.5 rounded-xl transition-all duration-300 group"
+            :class="activeTab === 'experience' ? 'bg-gradient-to-r from-emerald-500 to-teal-400 text-white shadow-[0_0_20px_rgba(16,185,129,0.3)]' : 'text-gray-400 hover:text-white hover:bg-white/5'"
             @click="activeTab = 'experience'">
-            <UIcon name="i-lucide-briefcase" class="w-5 h-5 transition-transform group-hover:scale-110" />
-            <span class="font-bold tracking-widest text-xs sm:text-sm uppercase">Experience</span>
+            <UIcon name="i-lucide-briefcase" class="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:scale-110" />
+            <span class="font-bold tracking-wider text-[11px] sm:text-sm uppercase whitespace-nowrap">Experience</span>
           </button>
 
           <!-- Education Tab -->
           <button
-            class="flex items-center gap-2 px-6 py-2.5 rounded-lg transition-all duration-300 group whitespace-nowrap"
-            :class="activeTab === 'education' ? 'bg-[#10b981] text-white shadow-[0_0_15px_rgba(16,185,129,0.3)]' : 'text-gray-400 hover:text-emerald-400 hover:bg-emerald-400/5'"
+            class="flex flex-1 sm:flex-none justify-center items-center gap-1.5 sm:gap-2 px-2 sm:px-6 py-2 sm:py-2.5 rounded-xl transition-all duration-300 group"
+            :class="activeTab === 'education' ? 'bg-gradient-to-r from-emerald-500 to-teal-400 text-white shadow-[0_0_20px_rgba(16,185,129,0.3)]' : 'text-gray-400 hover:text-white hover:bg-white/5'"
             @click="activeTab = 'education'">
-            <UIcon name="i-lucide-graduation-cap" class="w-5 h-5 transition-transform group-hover:scale-110" />
-            <span class="font-bold tracking-widest text-xs sm:text-sm uppercase">Education</span>
+            <UIcon name="i-lucide-graduation-cap" class="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:scale-110" />
+            <span class="font-bold tracking-wider text-[11px] sm:text-sm uppercase whitespace-nowrap">Education</span>
           </button>
         </div>
       </div>
