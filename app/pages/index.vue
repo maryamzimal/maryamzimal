@@ -2,7 +2,6 @@
   <UMain>
     <AppHeroSection />
     <AppAboutSection />
-    <AppExperienceEducation />
     <AppTechStack />
     <AppBuildSection />
     <AppFeaturedProjects />
