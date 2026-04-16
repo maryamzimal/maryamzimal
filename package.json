@@ -2,8 +2,8 @@
   "name": "maryamzimal",
   "type": "module",
   "private": true,
-  "version": "0.0.11",
-  "packageManager": "npm@10.11.0",
+  "version": "0.0.10",
+  "packageManager": "npm@11.11.0",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
