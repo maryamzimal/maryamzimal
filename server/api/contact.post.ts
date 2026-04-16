@@ -5,7 +5,7 @@ const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Invalid email address"),
   phone: z.string().optional(),
-  category: z.string().min(1, "Category is required"),
+  category: z.string().optional(),
   message: z.string().min(10, "Message must be at least 10 characters"),
   honeypot: z.string().optional(),
 });
@@ -48,13 +48,13 @@ export default defineEventHandler(async (event) => {
     const { data, error } = await resend.emails.send({
       from: 'Portfolio Contact <onboarding@resend.dev>', // Update with your verified domain in production
       to: 'maryamzimal24@gmail.com', // Admin email
-      subject: `New Contact Request: ${category} from ${name}`,
+      subject: `New Contact Request: ${category || 'General Inquiry'} from ${name}`,
       html: `
         <h2>New Contact Submission</h2>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
-        <p><strong>Category:</strong> ${category}</p>
+        <p><strong>Category:</strong> ${category || 'Not specified'}</p>
         <p><strong>Message:</strong></p>
         <p>${message.replace(/\n/g, '<br>')}</p>
       `
