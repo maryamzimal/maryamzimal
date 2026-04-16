@@ -35,18 +35,32 @@ export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig(event);
   
   // Try multiple sources for the API key to ensure robustness on Cloudflare
+  // We use globalThis and process.env as fallbacks for different Nitro presets
   const resendApiKey = 
     config.resendApiKey || 
-    process.env.NUXT_RESEND_API_KEY || 
-    process.env.RESEND_API_KEY || 
+    (process.env.NUXT_RESEND_API_KEY as string) || 
+    (process.env.RESEND_API_KEY as string) || 
     (event.context.cloudflare?.env?.NUXT_RESEND_API_KEY as string) || 
-    (event.context.cloudflare?.env?.RESEND_API_KEY as string);
+    (event.context.cloudflare?.env?.RESEND_API_KEY as string) ||
+    ((globalThis as any).NUXT_RESEND_API_KEY as string) ||
+    ((globalThis as any).RESEND_API_KEY as string);
 
   if (!resendApiKey) {
-    console.error("Missing RESEND_API_KEY in all known environment sources");
+    // DIAGNOSTIC DATA (Safe flags only, no values)
+    const diagnostics = {
+      config: !!config.resendApiKey,
+      process_nuxt: !!process.env.NUXT_RESEND_API_KEY,
+      process_raw: !!process.env.RESEND_API_KEY,
+      cloudflare_context: !!event.context.cloudflare,
+      cloudflare_env: !!event.context.cloudflare?.env,
+      global_nuxt: !!(globalThis as any).NUXT_RESEND_API_KEY,
+      global_raw: !!(globalThis as any).RESEND_API_KEY
+    };
+
+    console.error("Missing RESEND_API_KEY. Diagnostics:", diagnostics);
     throw createError({
       statusCode: 500,
-      statusMessage: "Server Configuration Error: Missing Resend API Key. Please ensure it is set in Cloudflare dashboard."
+      statusMessage: `Server Configuration Error: Missing Resend API Key. (Checked: ${JSON.stringify(diagnostics)})`
     });
   }
 
