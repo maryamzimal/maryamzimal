@@ -25,7 +25,7 @@ export default defineNuxtConfig({
   },
   compatibilityDate: "2026-04-13",
   runtimeConfig: {
-    resendApiKey: '', // Overridden by NUXT_RESEND_API_KEY env var
+    resendApiKey: process.env.NUXT_RESEND_API_KEY || process.env.RESEND_API_KEY || '',
   },
   nitro: {
     preset: "cloudflare_module",

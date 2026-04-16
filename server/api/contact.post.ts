@@ -32,13 +32,21 @@ export default defineEventHandler(async (event) => {
   // }
 
   // 3. Send email using Resend
-  const config = useRuntimeConfig();
-  const resendApiKey = config.resendApiKey;
+  const config = useRuntimeConfig(event);
+  
+  // Try multiple sources for the API key to ensure robustness on Cloudflare
+  const resendApiKey = 
+    config.resendApiKey || 
+    process.env.NUXT_RESEND_API_KEY || 
+    process.env.RESEND_API_KEY || 
+    (event.context.cloudflare?.env?.NUXT_RESEND_API_KEY as string) || 
+    (event.context.cloudflare?.env?.RESEND_API_KEY as string);
+
   if (!resendApiKey) {
-    console.error("Missing RESEND_API_KEY in environment variables");
+    console.error("Missing RESEND_API_KEY in all known environment sources");
     throw createError({
       statusCode: 500,
-      statusMessage: "Server Configuration Error: Missing Resend API Key"
+      statusMessage: "Server Configuration Error: Missing Resend API Key. Please ensure it is set in Cloudflare dashboard."
     });
   }
 
