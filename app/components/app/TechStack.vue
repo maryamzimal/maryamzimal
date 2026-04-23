@@ -3,41 +3,35 @@ const techStack = [
   {
     category: 'Frontend & UI',
     items: [
-
       { name: 'HTML5', icon: 'logos:html-5' },
       { name: 'CSS3', icon: 'logos:css-3' },
       { name: 'Tailwind CSS', icon: 'logos:tailwindcss-icon' },
       { name: 'JavaScript', icon: 'logos:javascript' },
+      { name: 'TypeScript', icon: 'logos:typescript-icon' },
       { name: 'Vue 3', icon: 'logos:vue' },
       { name: 'Nuxt 4', icon: 'logos:nuxt-icon' },
       { name: 'Nuxt UI', icon: 'logos:nuxt-icon' },
-      { name: 'NuxtHub', icon: 'logos:nuxt-icon' },
-      { name: 'TypeScript', icon: 'logos:typescript-icon' },
     ]
   },
   {
-    category: 'Backend & Data',
+    category: 'Backend, Infrastructure & Workflow',
     items: [
       { name: 'Node.js', icon: 'logos:nodejs-icon' },
+      { name: 'NuxtHub', icon: 'logos:nuxt-icon' },
       { name: 'SQLite', icon: 'logos:sqlite' },
       { name: 'Drizzle ORM', icon: 'simple-icons:drizzle' },
-      { name: 'Cloudflare D1', icon: 'logos:cloudflare-icon' },
-
-      { name: 'Git', icon: 'logos:github-icon' },
+      { name: 'Cloudflare', subtitle: '(Workers, D1)', icon: 'logos:cloudflare-icon' },
+      { name: 'Git', icon: 'logos:git-icon' },
     ]
   }
 ]
 
 // Standardized particle logic for exact theme match
-
 </script>
 
 <template>
   <section
     class="pt-16 pb-8 px-6 relative overflow-hidden">
-
-
-
     <UContainer class="relative z-10 space-y-16">
       <!-- Standardized Heading -->
       <div class="flex flex-col gap-1.5 mb-11 text-center items-center justify-center animate-fade-in-up">
@@ -78,9 +72,16 @@ const techStack = [
                 <div class="absolute inset-0 bg-white/20 blur-xl opacity-0 group-hover:opacity-40 transition-opacity rounded-full" />
               </div>
 
-              <span class="text-xs font-semibold text-gray-300 group-hover:text-cyan-400 transition-colors">
-                {{ tech.name }}
-              </span>
+              <div class="flex flex-col items-center gap-0.5">
+                <span class="text-xs font-semibold text-gray-300 group-hover:text-cyan-400 transition-colors">
+                  {{ tech.name }}
+                </span>
+                <span
+                  v-if="tech.subtitle"
+                  class="text-[10px] text-gray-400 font-medium group-hover:text-cyan-500/80 transition-colors">
+                  {{ tech.subtitle }}
+                </span>
+              </div>
             </UCard>
           </div>
         </div>
@@ -97,8 +98,6 @@ const techStack = [
 </template>
 
 <style scoped>
-
-
 @keyframes fade-in-up {
   0% { opacity: 0; transform: translateY(20px); }
   100% { opacity: 1; transform: translateY(0); }
