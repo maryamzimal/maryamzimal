@@ -38,7 +38,7 @@ const featuredProjects = [
     link: 'https://github.com/maryamzimal',
     tags: ['Nuxt 4', 'Tailwind CSS', 'Drizzle ORM', 'NuxtHub Blob', 'SQLite', 'Nitro'],
     features: [
-      'Role-Based Access Control (Patient & Pharmacist)',
+      'Role-Based Access Control',
       'Prescription Upload & Verification Workflow',
       'Multi-Step Clinical Order Lifecycle',
       'Secure Medical Document Storage',
@@ -50,14 +50,10 @@ const featuredProjects = [
 ]
 
 // Particles logic (matches theme)
-
 </script>
 
 <template>
   <section id="projects" class="py-12 px-6 relative overflow-hidden border-y border-white/5">
-
-
-
     <UContainer class="relative z-10 space-y-12">
       <!-- Section Heading -->
       <div class="flex flex-col gap-2 text-center items-center justify-center animate-fade-in-up">
@@ -71,20 +67,18 @@ const featuredProjects = [
 
       <!-- Project Stack -->
       <div class="space-y-12">
-        <div 
-          v-for="(project, index) in featuredProjects" 
+        <div
+          v-for="(project, index) in featuredProjects"
           :key="index"
           class="group flex flex-col gap-8 items-center"
-          :class="[index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse']"
-        >
+          :class="[index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse']">
           <!-- Project Visual (Mockup) -->
           <div class="w-full lg:w-[55%] relative transform transition-all duration-700 group-hover:scale-[1.01]">
             <!-- Subtle Glow Background -->
-            <div 
+            <div
               class="absolute -inset-4 rounded-[2rem] bg-gradient-to-br opacity-10 blur-3xl transition-opacity duration-500 group-hover:opacity-30"
-              :class="project.glow"
-            />
-            
+              :class="project.glow" />
+
             <div class="relative rounded-xl border border-white/10 bg-gray-900/40 backdrop-blur-sm overflow-hidden shadow-2xl">
               <!-- Browser Header -->
               <div class="bg-gray-800/80 border-b border-white/10 p-2 flex items-center gap-2 px-4">
@@ -104,12 +98,11 @@ const featuredProjects = [
                   <NuxtImg
                     :src="project.image"
                     :alt="project.title"
-                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.01]"
-                  />
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.01]" />
                   <!-- Coming Soon Overlay -->
                   <div v-if="project.comingSoon" class="absolute inset-0 bg-gray-950/80 backdrop-blur-md flex flex-col items-center justify-center">
                     <div class="px-6 py-2 border border-primary/30 rounded-full bg-primary/10 mb-2">
-                       <span class="text-xs font-bold text-primary-400 uppercase tracking-[0.3em] animate-pulse">Coming Soon</span>
+                      <span class="text-xs font-bold text-primary-400 uppercase tracking-[0.3em] animate-pulse">Coming Soon</span>
                     </div>
                   </div>
                 </ULink>
@@ -122,7 +115,7 @@ const featuredProjects = [
             <h3 class="text-2xl sm:text-3xl font-black text-white leading-tight">
               {{ project.title }}
             </h3>
-            
+
             <p class="text-gray-400 text-base leading-relaxed line-clamp-2">
               {{ project.description }}
             </p>
@@ -145,8 +138,7 @@ const featuredProjects = [
                   :key="tag"
                   :label="tag"
                   variant="subtle"
-                  class="px-2 py-0.5 text-[9px] uppercase tracking-wider bg-white/5 border border-white/10 text-primary-300 rounded-md"
-                />
+                  class="px-2 py-0.5 text-[9px] uppercase tracking-wider bg-white/5 border border-white/10 text-primary-300 rounded-md" />
               </div>
 
               <!-- CTA Link -->
@@ -158,8 +150,7 @@ const featuredProjects = [
                   icon="i-simple-icons-github"
                   trailing
                   variant="link"
-                  class="text-primary-400 hover:text-primary-300 p-0 font-bold text-sm tracking-tight transition-all"
-                />
+                  class="text-primary-400 hover:text-primary-300 p-0 font-bold text-sm tracking-tight transition-all" />
               </div>
             </div>
           </div>
