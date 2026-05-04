@@ -5,7 +5,7 @@ const featuredProjects = [
     description:
       'A full-stack movie catalog application using Nuxt 4 that demonstrates authentication, API integration, and freemium access control. Built with a focus on real-world application structure and scalable development.',
     image: '/movieflix.png',
-    link: 'https://github.com/maryamzimal',
+    link: 'https://github.com/maryamzimal/MovieFlix',
     tags: ['Nuxt 4', 'TypeScript', 'Drizzle ORM', 'NuxtHub', 'D1'],
     features: [
       'Custom Auth with Email & Password',
@@ -20,7 +20,7 @@ const featuredProjects = [
     description:
       'A luxury restaurant web experience focused on elegance, performance, and real usability. Built with a focus on spacing, typography, and subtle accents for a premium feel.',
     image: '/Veloura.png',
-    link: 'https://github.com/maryamzimal',
+    link: 'https://github.com/maryamzimal/Veloura',
     tags: ['Nuxt 3', 'Tailwind', 'Auth Flows', 'Micro-interactions'],
     features: [
       'Responsive UI & Clean Components',
@@ -31,17 +31,19 @@ const featuredProjects = [
     glow: 'from-purple-500/20 to-fuchsia-600/20'
   },
   {
-    title: 'Thirst - Wellness & Hydration',
+    title: 'Pharma Curate - Clinical Pharmacy Platform',
     description:
-      'A premium lifestyle companion focusing on healthy hydration habits. Thirst combines habit-tracking logic with a vibrant, refreshing user interface.',
-    image: 'https://dummyimage.com/1200x800/111827/4b5563&text=Thirst+Coming+Soon',
-    comingSoon: true,
-    tags: ['Next.js', 'Framer Motion', 'Wellness'],
+      'A professional, clinical-grade e-commerce and pharmacy management platform. Provides a seamless experience for patients to manage their health and for pharmacists to handle clinical workflows — from prescription verification to multi-step order fulfillment.',
+    image: '/curate.png',
+    link: 'https://github.com/maryamzimal',
+    tags: ['Nuxt 4', 'Tailwind CSS', 'Drizzle ORM', 'NuxtHub Blob', 'SQLite', 'Nitro'],
     features: [
-      'Custom Hydration Goal Setting',
-      'Detailed Daily Habit Analytics',
-      'Curated Beverage Discovery',
-      'Dark-Mode Optimized Animations'
+      'Role-Based Access Control (Patient & Pharmacist)',
+      'Prescription Upload & Verification Workflow',
+      'Multi-Step Clinical Order Lifecycle',
+      'Secure Medical Document Storage',
+      'Digital Pharmacy with Category Browsing',
+      'Inventory Control & Expiry Tracking'
     ],
     glow: 'from-teal-500/20 to-emerald-600/20'
   },
@@ -102,7 +104,7 @@ const featuredProjects = [
                   <NuxtImg
                     :src="project.image"
                     :alt="project.title"
-                    class="w-full h-full object-contain p-2 transition-transform duration-500 group-hover:scale-[1.01]"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.01]"
                   />
                   <!-- Coming Soon Overlay -->
                   <div v-if="project.comingSoon" class="absolute inset-0 bg-gray-950/80 backdrop-blur-md flex flex-col items-center justify-center">
