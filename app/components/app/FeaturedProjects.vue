@@ -35,7 +35,7 @@ const featuredProjects = [
     description:
       'A professional, clinical-grade e-commerce and pharmacy management platform. Provides a seamless experience for patients to manage their health and for pharmacists to handle clinical workflows — from prescription verification to multi-step order fulfillment.',
     image: '/curate.png',
-    link: 'https://github.com/maryamzimal',
+    link: 'https://github.com/maryamzimal/curate',
     tags: ['Nuxt 4', 'Tailwind CSS', 'Drizzle ORM', 'NuxtHub Blob', 'SQLite', 'Nitro'],
     features: [
       'Role-Based Access Control',
